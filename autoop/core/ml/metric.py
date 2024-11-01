@@ -1,7 +1,8 @@
 from abc import ABC, abstractmethod
-from typing import Any
+from typing import Any, Union
 import numpy as np
 from typing import Callable
+from math import sqrt
 
 METRICS = [
     "mean_absolute_error",
@@ -12,7 +13,9 @@ METRICS = [
     "recall"
 ]
 
-def get_metric(name: str):
+def get_metric(name: str) -> Union["MeanAbsoluteError", "MeanSquaredError", 
+                                   "RootMeanSquaredError", "Accuracy", 
+                                   "Precision", "Recall"]:
     # Factory function to get a metric by name.
     # Return a metric instance given its str name.
     if name not in METRICS:
@@ -38,28 +41,35 @@ class Metric(ABC):
     # your code here
     # remember: metrics take ground truth and prediction as input and return a real number
     @abstractmethod
-    def _calculate(self) -> any:
+    def evaluate(y_true, y_pred):
         pass
 
     def __call__(self) -> Callable[[any], any]:
-        return self._calculate()
+        return self.evaluate() # Not sure about this
     
 
-# add here concrete implementations of the Metric class
 class MeanAbsoluteError(Metric):
-    pass
+    def evaluate(self, y_true, y_pred) -> float:
+        return np.mean(np.abs(y_true - y_pred))
 
 class MeanSquaredError(Metric):
-    pass
+    def evaluate(self, y_true, y_pred) -> float:
+        return np.mean((y_true - y_pred) ** 2)
 
 class RootMeanSquaredError(Metric):
-    pass
+    def evaluate(self, y_true, y_pred) -> float:
+        # Maybe change this later to the next code if it works:
+        # return sqrt(MeanSquaredError.evaluate(y_true-y_pred))
+        return sqrt(np.mean((y_true - y_pred) ** 2))
 
 class Accuracy(Metric):
-    pass
+    def evaluate(self, y_true, y_pred):
+        return np.mean(y_true == y_pred)
 
 class Precision(Metric):
-    pass
+    def evaluate(self, y_true, y_pred):
+        pass
 
 class Recall(Metric):
-    pass
+    def evaluate(self, y_true, y_pred):
+        pass
