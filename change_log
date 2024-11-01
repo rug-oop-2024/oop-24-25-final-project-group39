@@ -1,0 +1,4 @@
+1-11 21.00:
+functional/feature.py - Combined our functional feature file 
+model/feature.py - Created model feature class
+metric.py - Created get_metric and Metric base class in metric.py
