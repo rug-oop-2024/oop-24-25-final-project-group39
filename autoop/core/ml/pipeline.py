@@ -119,6 +119,3 @@ Pipeline(
             "metrics": self._metrics_results,
             "predictions": self._predictions,
         }
-        
-
-    

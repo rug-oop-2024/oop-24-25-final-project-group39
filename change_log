@@ -2,3 +2,8 @@
 functional/feature.py - Combined our functional feature file 
 model/feature.py - Created model feature class
 metric.py - Created get_metric and Metric base class in metric.py
+
+1-11 22:40:
+Replaced database.py and storage.py as instructed by announcement
+metric.py - Created classes for each metric, created evaluate except for last two
+model.py - Made Model an ABC with abstract methods fit and predict as they are used in pipeline.py
