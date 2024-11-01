@@ -7,4 +7,4 @@ from typing import Literal
 
 class Model:
     pass # your code (attribute and methods) here
-    
+

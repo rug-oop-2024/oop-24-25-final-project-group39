@@ -1,0 +1,3 @@
+fixed some basic flake8 warnings, added a flake8 yml file,
+removed the emoij's.
+Added the draft version of detect_features in functional-feature.py 
