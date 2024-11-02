@@ -13,8 +13,10 @@ def detect_feature_types(dataset: Dataset) -> List[Feature]:
     current_data = dataset.read()
     feature_list = []
     for column in current_data.columns:
-        if current_data[column].dtype == "float64" or current_data[column].dtype == "int64":
+        if current_data[column].dtype == "float64" or \
+            current_data[column].dtype == "int64":
             feature_list.append(Feature(column, 'numerical'))
         else:
             feature_list.append(Feature(column, 'categorical'))
+    return feature_list
 
