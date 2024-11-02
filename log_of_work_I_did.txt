@@ -1,3 +1,6 @@
 fixed some basic flake8 warnings, added a flake8 yml file,
 removed the emoij's.
-Added the draft version of detect_features in functional-feature.py 
+Added the draft version of detect_features in functional-feature.py
+- 2-11-2024
+added the precision method in metric.py
+added a draft version of the Artifact claas in artifact.py
