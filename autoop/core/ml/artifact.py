@@ -3,7 +3,7 @@ from typing import List, Dict
 
 
 class Artifact():
-    #def __init__(self, name: str, asset_path: str, version: str,
+    # def __init__(self, name: str, asset_path: str, version: str,
     #             data: bytes, metadata: Dict[str, str],
     #            type: str, tags: List[str]) -> None:
     def __init__(self, name: str, asset_path: str, version: str,
@@ -13,22 +13,22 @@ class Artifact():
         self._asset_path = asset_path
         self._version = version
         self._data = data
-        #self._metadata = metadata
+        # self._metadata = metadata
         self._type = type
-        #self._tags = tags
+        # self._tags = tags
 
     @property
     def name(self):
         return self._name
-    
+
     @name.setter
     def name(self, new_name):
         self._name = new_name
-    
+
     @property
     def asset_path(self):
         return self._asset_path
-    
+
     @property
     def version(self):
         return self._version
@@ -36,7 +36,7 @@ class Artifact():
     @property
     def data(self):
         return self._data
-    
+
     @property
     def type(self):
         return self._type

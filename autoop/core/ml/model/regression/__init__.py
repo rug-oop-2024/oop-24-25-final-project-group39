@@ -1,2 +1,3 @@
+from .multi_linear_regression import MultipleLinearRegression
 
-from autoop.core.ml.model.regression.multiple_linear_regression import MultipleLinearRegression
+__all__ = ["MultipleLinearRegression"]
