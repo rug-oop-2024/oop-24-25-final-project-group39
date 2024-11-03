@@ -9,3 +9,4 @@ added a prevention of error in metric.py
 added a draft version of model in ml/model/model.py
 fixed flake8 in various files
 added a metric class r_squared
+added in model for both classification and regression a model
