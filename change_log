@@ -8,6 +8,9 @@ Replaced database.py and storage.py as instructed by announcement
 metric.py - Created classes for each metric, created evaluate except for last two
 model.py - Made Model an ABC with abstract methods fit and predict as they are used in pipeline.py
 
-3/11 00:40:
+3-11 00:40:
 artifact.py - Made getters and setters so private attributes work for feature tests
 metric.py - Fixed last two metrics
+
+4-11 00:10:
+model.py - created init method and getters for the attributes, was necessary for other class to change params and type
