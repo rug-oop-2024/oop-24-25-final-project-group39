@@ -4,3 +4,8 @@ Added the draft version of detect_features in functional-feature.py
 - 2-11-2024
 added the precision method in metric.py
 added a draft version of the Artifact claas in artifact.py
+- 3-11-2024
+added a prevention of error in metric.py
+added a draft version of model in ml/model/model.py
+fixed flake8 in various files
+added a metric class r_squared

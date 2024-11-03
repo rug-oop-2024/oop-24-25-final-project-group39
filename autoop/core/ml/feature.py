@@ -8,7 +8,7 @@ from autoop.core.ml.dataset import Dataset
 
 class Feature(BaseModel):
     # attributes here
-    def __init__(self, name:str, type:str) -> None:
+    def __init__(self, name: str, type: str) -> None:
         self.name = name
         self.type = type
 
