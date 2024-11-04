@@ -3,19 +3,19 @@ from typing import List, Dict
 
 
 class Artifact():
-    # def __init__(self, name: str, asset_path: str, version: str,
-    #             data: bytes, metadata: Dict[str, str],
-    #            type: str, tags: List[str]) -> None:
     def __init__(self, name: str, asset_path: str, version: str,
-                 data: bytes,
-                 type: str) -> None:
+                 data: bytes, metadata: Dict[str, str],
+                 type: str, tags: List[str]) -> None:
+    #def __init__(self, name: str, asset_path: str, version: str,
+    #            data: bytes,
+    #            type: str) -> None:
         self._name = name
         self._asset_path = asset_path
         self._version = version
         self._data = data
-        # self._metadata = metadata
+        self._metadata = metadata
         self._type = type
-        # self._tags = tags
+        self._tags = tags
 
     @property
     def name(self):

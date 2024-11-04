@@ -5,9 +5,10 @@ from sklearn.neighbors import KNeighborsClassifier
 
 
 class KNearestNeighbors(Model):
-    def __init__(self) -> None:
+    def __init__(self, k: int = 3) -> None:
         super().__init__(model_type="classification")
-        self.model = KNeighborsClassifier()
+        self.hyperparameters = {"k" : k}
+        self.model = KNeighborsClassifier(k)
 
     def fit(self, observations: np.ndarray, ground_truth: np.ndarray):
         """

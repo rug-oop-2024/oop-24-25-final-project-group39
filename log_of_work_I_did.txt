@@ -10,3 +10,11 @@ added a draft version of model in ml/model/model.py
 fixed flake8 in various files
 added a metric class r_squared
 added in model for both classification and regression a model
+- 4-11-2024
+added all 4 models. 2 in classification and 2 in regression. I am confused as to how private
+is handled, as far as I am aware they are all public. 
+
+
+Questions:
+testing in readme, do we need to create unittests?
+storage does not pass its unit test, do we need to 'fix'storage?

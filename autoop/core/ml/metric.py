@@ -51,7 +51,7 @@ class Metric(ABC):
     # Using the Any of typing:
     # def __call__(ground_truth: list[Any], prediction: list[Any]) -> Any:
     def __call__(self, ground_truth: np.ndarray,
-                 prediciton: np.ndarray) -> Callable[[any], any]:
+                 prediciton: np.ndarray) -> Callable[[Any], Any]:
         return self.evaluate(ground_truth, prediciton)
 
 
@@ -75,7 +75,7 @@ class Accuracy(Metric):
         return np.mean(y_true == y_pred)
 
 
-class Precision(Metric):  # Precision =
+class Precision(Metric):
     # TruePositive/(Truepositive + FalsePositive)
     def evaluate(self, y_true: np.ndarray, y_pred: np.ndarray) -> float:
         true_positive = np.sum((y_true == 1) & (y_pred == 1))
@@ -99,6 +99,6 @@ class RSquared(Metric):
         y_mean = np.mean(y_true)
         total_sum_squares = np.sum((y_true - y_mean) ** 2)
         residual_sum_squares = np.sum((y_true - y_pred) ** 2)
-        if total_sum_squares == 0: 
+        if total_sum_squares == 0:
             return 1.0
         return 1 - (residual_sum_squares / total_sum_squares)
