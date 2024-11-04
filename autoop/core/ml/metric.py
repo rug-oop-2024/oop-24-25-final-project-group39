@@ -7,15 +7,16 @@ METRICS = [
     "mean_absolute_error",
     "mean_squared_error",
     "root_mean_squared_error",
+    "r_squared"
     "accuracy",
-    "precision",
-    "recall"
+    "macro_average_precision",
+    "macro_average_recall"
 ]
 
 
 def get_metric(name: str) -> Union["MeanAbsoluteError", "MeanSquaredError",
                                    "RootMeanSquaredError", "Accuracy",
-                                   "Precision", "Recall"]:
+                                   "MacroAveragePrecision", "MacroAverageRecall"]:
     # Factory function to get a metric by name.
     # Return a metric instance given its str name.
     if name not in METRICS:
@@ -30,9 +31,9 @@ def get_metric(name: str) -> Union["MeanAbsoluteError", "MeanSquaredError",
         case "accuracy":
             return Accuracy()
         case "precision":
-            return Precision()
+            return MacroAveragePrecision()
         case "recall":
-            return Recall()
+            return MacroAverageRecall()
 
 
 class Metric(ABC):
@@ -46,7 +47,7 @@ class Metric(ABC):
     def evaluate(y_true: np.ndarray, y_pred: np.ndarray) -> float:
         pass
 
-    def __call__(self) -> Callable[[any], any]:
+    def __call__(self) -> Callable[[Any], Any]:
         return self.evaluate()  # Not sure about this
 
 
@@ -63,22 +64,18 @@ class MeanSquaredError(Metric):
 class RootMeanSquaredError(Metric):
     def evaluate(self, y_true: np.ndarray, y_pred: np.ndarray) -> float:
         return sqrt(np.mean((y_true - y_pred) ** 2))
-
+    
+class RSquared(Metric):
+    def evaluate(self, y_true: np.ndarray, y_pred: np.ndarray) -> float:
+        y_mean = np.mean(y_true)
+        total_sum_squares = np.sum((y_true - y_mean) ** 2)
+        residual_sum_squares = np.sum((y_true - y_pred) ** 2)
+        if total_sum_squares == 0: 
+            return 1.0
+        return 1 - (residual_sum_squares / total_sum_squares)
 
 class Accuracy(Metric):
     def evaluate(self, y_true: np.ndarray, y_pred: np.ndarray) -> float:
         return np.mean(y_true == y_pred)
 
 
-class Precision(Metric): # Precision = TruePositive/ (Truepositive + FalsePositive)
-    def evaluate(self, y_true: np.ndarray, y_pred: np.ndarray) -> float:
-        true_positive = np.sum((y_true == 1) & (y_pred == 1))
-        false_positive = np.sum((y_true == 0) & (y_pred == 0))
-        return true_positive / (true_positive + false_positive)
-
-
-class Recall(Metric):
-    def evaluate(self, y_true: np.ndarray, y_pred: np.ndarray) -> float:
-        true_positive = np.sum((y_true == 1) & (y_pred == 1))
-        false_negative = np.sum((y_true == 0) & (y_pred == 1))
-        return true_positive / (true_positive + false_negative)
