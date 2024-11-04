@@ -18,8 +18,6 @@ class Artifact():
         self._tags = tags
         self._id = self._generate_id()
 
-    
-
     @property
     def name(self):
         return self._name
