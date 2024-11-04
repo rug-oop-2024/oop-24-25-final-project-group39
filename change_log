@@ -13,4 +13,14 @@ artifact.py - Made getters and setters so private attributes work for feature te
 metric.py - Fixed last two metrics
 
 4-11 00:10:
-model.py - created init method and getters for the attributes, was necessary for other class to change params and type
+model.py - Created init method and getters for the attributes, was necessary for other class to change params and type
+
+4-11 21:30:
+metric.py - Changed metrics precision and recall to MacroAverage of both
+test_storage.py - Updated the paths so it works for all operating systems
+system.py - Changed forward slashes to backslashes for it to work on Windows
+1_Datasets.py - Added dataset management system which can import and delete datasets
+2_Modelling.py - Added selecting a dataset and selecting target and import features
+storage.py - Changes last forward slashes to backslashes for it to work on Windows
+dataset.py - Quick fix in reading datasets
+artifact.py - Quick fix in attributes
