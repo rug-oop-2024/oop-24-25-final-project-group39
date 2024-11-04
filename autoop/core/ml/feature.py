@@ -1,13 +1,10 @@
-
-from pydantic import BaseModel, Field
 from typing import Literal
 import numpy as np
 
 from autoop.core.ml.dataset import Dataset
 
 class Feature:
-    def __init__(self, name: str, type: str) -> None:
-        # Might need to change typehint for type to Literal[]?
+    def __init__(self, name: str, type: Literal["regression", "classification"]) -> None:
         self.name = name
         self.type = type
 
