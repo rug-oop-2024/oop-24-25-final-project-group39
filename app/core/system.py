@@ -73,11 +73,12 @@ class AutoMLSystem:
 
     @staticmethod
     def get_instance():
+        # Check about the backslashes, maybe change this to generic for all operating systems
         if AutoMLSystem._instance is None:
             AutoMLSystem._instance = AutoMLSystem(
-                LocalStorage("./assets/objects"), 
+                LocalStorage(".\\assets\\objects"), 
                 Database(
-                    LocalStorage("./assets/dbo")
+                    LocalStorage(".\\assets\\dbo")
                 )
             )
         AutoMLSystem._instance._database.refresh()
