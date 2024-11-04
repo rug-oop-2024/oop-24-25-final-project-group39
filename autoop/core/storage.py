@@ -70,12 +70,14 @@ class LocalStorage(Storage):
         with open(path, 'rb') as f:
             return f.read()
 
-    def delete(self, key: str = "/"):
+    def delete(self, key: str = "\\"):
+        # Backslash above is for Windows. Change this to forwards slash on other systems
         path = self._join_path(key)
         self._assert_path_exists(path)
         os.remove(path)
 
-    def list(self, prefix: str = "/") -> List[str]:
+    def list(self, prefix: str = "\\") -> List[str]:
+        # Backslash above is for Windows. Change this to forwards slash on other systems
         path = self._join_path(prefix)
         self._assert_path_exists(path)
         # Use os.path.join for compatibility across platforms
