@@ -6,7 +6,7 @@ from sklearn.neighbors import KNeighborsClassifier
 
 class KNearestNeighbors(Model):
     def __init__(self) -> None:
-        super().__init__(model_type="classification")
+        super().__init__(type="classification")
         self.model = KNeighborsClassifier()
 
     def fit(self, observations: np.ndarray, ground_truth: np.ndarray):
