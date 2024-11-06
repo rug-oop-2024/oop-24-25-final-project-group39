@@ -24,3 +24,9 @@ system.py - Changed forward slashes to backslashes for it to work on Windows
 storage.py - Changes last forward slashes to backslashes for it to work on Windows
 dataset.py - Quick fix in reading datasets
 artifact.py - Quick fix in attributes
+
+6-11 13:00:
+database.py - Fixed _persist so it can delete dataset when there is more than one saved
+metric.py - Added MacroAveragePrecision and MacroAverageRecall
+1_Datasets.py - Added reruns and improves saving / loading
+2_Modelling.py - Added tons of modelling
