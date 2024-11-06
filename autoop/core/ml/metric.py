@@ -7,7 +7,7 @@ METRICS = [
     "mean_absolute_error",
     "mean_squared_error",
     "root_mean_squared_error",
-    "r_squared"
+    "r_squared",
     "accuracy",
     "macro_average_precision",
     "macro_average_recall"
@@ -15,7 +15,7 @@ METRICS = [
 
 
 def get_metric(name: str) -> Union["MeanAbsoluteError", "MeanSquaredError",
-                                   "RootMeanSquaredError", "Accuracy",
+                                   "RootMeanSquaredError", "RSquared", "Accuracy",
                                    "MacroAveragePrecision", "MacroAverageRecall"]:
     # Factory function to get a metric by name.
     # Return a metric instance given its str name.
@@ -28,11 +28,13 @@ def get_metric(name: str) -> Union["MeanAbsoluteError", "MeanSquaredError",
             return MeanSquaredError()
         case "root_mean_squared_error":
             return RootMeanSquaredError()
+        case "r_squared":
+            return RSquared()
         case "accuracy":
             return Accuracy()
-        case "precision":
+        case "macro_average_precision":
             return MacroAveragePrecision()
-        case "recall":
+        case "macro_average_recall":
             return MacroAverageRecall()
 
 
@@ -78,4 +80,30 @@ class Accuracy(Metric):
     def evaluate(self, y_true: np.ndarray, y_pred: np.ndarray) -> float:
         return np.mean(y_true == y_pred)
 
+class MacroAveragePrecision(Metric):
+    def evaluate(self, y_true, y_pred):
+        different_labels = np.unique(y_true)
+        precision_per_class = []
+        for label in different_labels:
+            true_positive = np.sum((y_true == label) & (y_pred == label))
+            false_positive = np.sum((y_true != label) & (y_pred == label))
+            if true_positive + false_positive == 0:
+                precision = 0
+            else:
+                precision = true_positive / (true_positive + false_positive)
+            precision_per_class.append(precision)
+        return np.mean(precision_per_class)
 
+class MacroAverageRecall(Metric):
+    def evaluate(self, y_true, y_pred):
+        different_labels = np.unique(y_true)
+        recall_per_class = []
+        for label in different_labels:
+            true_positive = np.sum((y_true == label) & (y_pred == label))
+            false_negative = np.sum((y_true == label) & (y_pred != label))
+            if true_positive + false_negative == 0:
+                precision = 0
+            else:
+                precision = true_positive / (true_positive + false_negative)
+            recall_per_class.append(precision)
+        return np.mean(recall_per_class)
