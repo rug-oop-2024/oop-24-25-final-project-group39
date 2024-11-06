@@ -32,15 +32,15 @@ if dataset == "Upload Dataset":
             saved_dataset = Dataset.from_dataframe(data=df, name=new_dataset.name, asset_path=new_dataset.name)
             automl.registry.register(saved_dataset)
             st.write(f"Succesfully saved dataset '{new_dataset.name}'")
+            st.rerun()
 else:
-    st.dataframe(dataset.read())
     dataset_to_csv = BytesIO(dataset.data)
     df = pd.read_csv(dataset_to_csv)
     st.write(df.head())
     if st.button(f"Delete dataset '{dataset}'"):
         automl.registry.delete(dataset.id)
         st.write(f"Succesfully removed dataset '{dataset}'")
-        st.write(f"Datasets remaining: {datasets}")
+        st.rerun()
 
 
 
@@ -49,5 +49,3 @@ if len(datasets) == 0:
     st.write("There are currently no saved datasets.")
 for dataset in datasets:
     st.write(dataset)
-
-
