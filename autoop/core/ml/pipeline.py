@@ -135,3 +135,7 @@ Pipeline(
             "metrics": self._metrics_results,
             "predictions": self._predictions,
         }
+    
+    def to_artifact(self, name: str) -> "Artifact":
+        data = pickle.dumps(self)
+        return Artifact(name=name, data=data, asset_path=f"pipeline/{name}", type="pipieline")
