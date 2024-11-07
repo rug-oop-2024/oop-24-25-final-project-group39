@@ -7,8 +7,9 @@ class Artifact():
     # def __init__(self, name: str, asset_path: str, version: str,
     #             data: bytes, metadata: Dict[str, str],
     #            type: str, tags: List[str]) -> None:
-    def __init__(self, name: str, asset_path: str, version: str,
-                 data: bytes, type: str, metadata: dict = {}, tags: list = []) -> None:
+    def __init__(self, name: str, asset_path: str,
+                 data: bytes, type: str, metadata: dict = {}, 
+                 version: str = "1_0_0", tags: list = []) -> None:
         self._name = name
         self._asset_path = asset_path
         self._version = version
