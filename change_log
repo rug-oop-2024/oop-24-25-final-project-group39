@@ -30,3 +30,9 @@ database.py - Fixed _persist so it can delete dataset when there is more than on
 metric.py - Added MacroAveragePrecision and MacroAverageRecall
 1_Datasets.py - Added reruns and improves saving / loading
 2_Modelling.py - Added tons of modelling
+
+7-11 12:15:
+pipeline.py - Added to_artifact function to save pipeline
+artifact.py - Gave version default value to get rid of error while saving pipeline
+1_Datasets.py - Changed everything into functions
+2_Modelling.py - Changed everything into functions
