@@ -5,9 +5,7 @@ import io
 
 
 class Artifact():
-    # def __init__(self, name: str, asset_path: str, version: str,
-    #             data: bytes, metadata: Dict[str, str],
-    #            type: str, tags: List[str]) -> None:
+
     def __init__(self, name: str, asset_path: str,
                  version: str, data: bytes,
                  type: str, metadata: Dict[str, str] = {},
