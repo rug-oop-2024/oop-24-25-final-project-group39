@@ -5,7 +5,12 @@ from sklearn.tree import DecisionTreeClassifier
 
 
 class DecisionTree(Model):
-    def __init__(self)-> None:
+    def __init__(self) -> None:
+        """
+        Initializes the decision tree model
+        Returns:
+            None
+        """
         super().__init__(type="classification")
         self.model = DecisionTreeClassifier()
 

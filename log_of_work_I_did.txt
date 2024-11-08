@@ -13,8 +13,7 @@ added in model for both classification and regression a model
 - 4-11-2024
 added all 4 models. 2 in classification and 2 in regression. I am confused as to how private
 is handled, as far as I am aware they are all public. 
-
-
-Questions:
-testing in readme, do we need to create unittests?
-storage does not pass its unit test, do we need to 'fix'storage?
+- 8-11-2024
+Updated the yml file so it would check for flake8 without me having to submit to main
+Fixed flake8 on all the files, some are still missing docstrings
+Fixed the way the models are called (they are not called as intended in ini.py from model)

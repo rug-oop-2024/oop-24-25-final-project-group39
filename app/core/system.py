@@ -1,6 +1,6 @@
 from autoop.core.storage import LocalStorage
 from autoop.core.database import Database
-from autoop.core.ml.dataset import Dataset
+#  from autoop.core.ml.dataset import Dataset
 from autoop.core.ml.artifact import Artifact
 from autoop.core.storage import Storage
 from typing import List
@@ -9,11 +9,25 @@ from typing import List
 class ArtifactRegistry():
     def __init__(self,
                  database: Database,
-                 storage: Storage):
+                 storage: Storage) -> None:
+        """
+        Initializes the ArtifactRegistry
+        Args:
+            database (Database): The database for storing artifact metadata
+            storage (Storage): The storage for saving artifact files
+        Returns:
+            None
+        """
         self._database = database
         self._storage = storage
 
-    def register(self, artifact: Artifact):
+    def register(self, artifact: Artifact) -> None:
+        """
+        Registers an artifact by saving its data in storage and
+        metadata in the database
+        Args:
+            artifact (Artifact):
+        """
         # save the artifact in the storage
         self._storage.save(artifact.data, artifact.asset_path)
         # save the metadata in the database
@@ -25,7 +39,7 @@ class ArtifactRegistry():
             "metadata": artifact.metadata,
             "type": artifact.type,
         }
-        self._database.set(f"artifacts", artifact.id, entry)
+        self._database.set("artifacts", artifact.id, entry)
 
     def list(self, type: str = None) -> List[Artifact]:
         entries = self._database.list("artifacts")
@@ -73,11 +87,13 @@ class AutoMLSystem:
 
     @staticmethod
     def get_instance():
+        # Check about the backslashes, maybe change this to generic
+        # for all operating systems
         if AutoMLSystem._instance is None:
             AutoMLSystem._instance = AutoMLSystem(
-                LocalStorage("./assets/objects"),
+                LocalStorage(".\\assets\\objects"),
                 Database(
-                    LocalStorage("./assets/dbo")
+                    LocalStorage(".\\assets\\dbo")
                 )
             )
         AutoMLSystem._instance._database.refresh()
