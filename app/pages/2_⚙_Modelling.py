@@ -8,9 +8,9 @@ from app.core.system import AutoMLSystem
 from autoop.core.ml.dataset import Dataset
 from autoop.core.ml.metric import METRICS, get_metric, Metric
 from autoop.functional.feature import detect_feature_types
-from autoop.core.ml.model.classification import (
+from autoop.core.ml.model import (
     DecisionTree, KNearestNeighbors, LogisticRegressionModel)
-from autoop.core.ml.model.regression import (
+from autoop.core.ml.model import (
     MultipleLinearRegression, RidgeModel)
 from autoop.core.ml.model.model import Model
 from autoop.core.ml.pipeline import Pipeline

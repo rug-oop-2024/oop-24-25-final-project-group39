@@ -14,7 +14,7 @@ class KNearestNeighbors(Model):
         super().__init__(type="classification")
         self.model = KNeighborsClassifier()
 
-    def fit(self, observations: np.ndarray, ground_truth: np.ndarray):
+    def fit(self, observations: np.ndarray, ground_truth: np.ndarray) -> None:
         """
         Fits the data by storing the observations
         and their corresponding labels.
