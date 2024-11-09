@@ -112,12 +112,12 @@ class LocalStorage(Storage):
         with open(path, 'rb') as f:
             return f.read()
 
-    def delete(self, key: str = r'\\') -> None:
-        """
+    def delete(self, key: str = '\\') -> None:
+        r"""
         Delete data at a given key
         Args:
             key (str): Key to delete data,
-                defaults to r'\\' for Windows
+                defaults to '\\' for Windows
         Returns:
             None
         """
@@ -125,12 +125,12 @@ class LocalStorage(Storage):
         self._assert_path_exists(path)
         os.remove(path)
 
-    def list(self, prefix: str = r'\\') -> List[str]:
-        """
+    def list(self, prefix: str = '\\') -> List[str]:
+        r"""
         List all paths under a given prefix
         Args:
             prefix (str): Prefix to list files,
-                defaults to r'\\' for Windows
+                defaults to '\\' for Windows
         Returns:
             List[str]: List of paths
         """

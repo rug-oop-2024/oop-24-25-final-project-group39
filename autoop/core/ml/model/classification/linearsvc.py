@@ -1,23 +1,23 @@
 import numpy as np
 
 from autoop.core.ml.model import Model
-from sklearn.neighbors import KNeighborsClassifier
+from sklearn.svm import LinearSVC
 
 
-class KNearestNeighbors(Model):
-    """K-Nearest Neighbors model for classification using scikit-learn"""
-    def __init__(self, n_neighbors: int = 3) -> None:
+class LinearSupportVectorClassifier(Model):
+    """Linear Support Vector Classifier using scikit-learn's LinearSVC"""
+    def __init__(self, C: float = 1.0, max_iter: int = 1000) -> None:
         """
-        Initializes the knn model
+        Initializes the Linear Support Vector Classifier
         Args:
-            n_neighbors (int): The number of neighbors to use for prediction,
-            defaults to 3
+            C (float): Regularization parameter, defaults to 1.0
+            max_iter (int): The maximum number of iterations, defaults to 1000
         Returns:
             None
         """
         super().__init__(type="classification",
-                         parameters={"n_neighbors": n_neighbors})
-        self.model = KNeighborsClassifier(n_neighbors=n_neighbors)
+                         parameters={"C": C, "max_iter": max_iter})
+        self.model = LinearSVC(C=C, max_iter=max_iter)
 
     def fit(self, observations: np.ndarray, ground_truth: np.ndarray) -> None:
         """
@@ -38,6 +38,6 @@ class KNearestNeighbors(Model):
         Args:
             observations (np.ndarray): Input data features for prediction
         Returns:
-            np.ndarray: Predicted labels for each input observation
+            np.ndarray: Predicted labels for each input observation.
         """
         return self.model.predict(observations)
