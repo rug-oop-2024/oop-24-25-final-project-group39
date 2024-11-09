@@ -7,7 +7,7 @@ from glob import glob
 class NotFoundError(Exception):
     """Exception raised when a specified path is not found
     """
-    def __init__(self, path) -> None:
+    def __init__(self, path: str) -> None:
         """
         Raises exception when a specified path is not found
         Args:
@@ -117,7 +117,7 @@ class LocalStorage(Storage):
         Delete data at a given key
         Args:
             key (str): Key to delete data,
-            defaults to r"\\" for Windows
+                defaults to "\\" for Windows
         Returns:
             None
         """
@@ -130,7 +130,7 @@ class LocalStorage(Storage):
         List all paths under a given prefix
         Args:
             prefix (str): Prefix to list files,
-            defaults to r"\\" for Windows
+                defaults to "\\" for Windows
         Returns:
             List[str]: List of paths
         """

@@ -6,7 +6,7 @@ from sklearn.linear_model import Ridge
 
 class RidgeModel(Model):
     """Ridge regression model using scikit-learn for regression tasks"""
-    def __init__(self, alpha=1.0) -> None:
+    def __init__(self, alpha: float = 1.0) -> None:
         """
         Initializes the ridge model
         Returns:
