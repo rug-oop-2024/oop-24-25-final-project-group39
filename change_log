@@ -42,3 +42,9 @@ metric.py - Fixed classes
 model __init__.py - Fixed if-statement and switched classification / regression
 2_Modelling.py - Fixed bugs
 3_Deployment.py - Fixed bugs
+
+9-11 12:45:
+2_Modelling.py - Divided into modelling_handling.py
+3_Deployment.py - Divided into deployment_handling.py
+modelling_handling.py - Partly from 2_Modelling.py
+deployment_handling.py - Partly from 3_Deployment.py

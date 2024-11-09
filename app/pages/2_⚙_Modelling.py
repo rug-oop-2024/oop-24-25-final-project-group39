@@ -1,15 +1,9 @@
 import streamlit as st
-import pandas as pd
-import time
-from io import BytesIO
-from typing import List
 
+import app.core.modelling_handling as mh
 from app.core.system import AutoMLSystem
-from autoop.core.ml.dataset import Dataset
-from autoop.core.ml.metric import METRICS, get_metric, Metric
 from autoop.functional.feature import detect_feature_types
-from autoop.core.ml.model import (get_model, REGRESSION_MODELS,
-                                  CLASSIFICATION_MODELS)
+from autoop.core.ml.model import get_model
 from autoop.core.ml.pipeline import Pipeline
 
 
@@ -31,138 +25,13 @@ datasets = automl.registry.list(type="dataset")
 # your code here
 
 
-def choose_dataset() -> "Dataset":
-    if len(datasets) == 0:
-        st.write("There are no saved datasets. \
-                 Please go to the Datasets page to save datasets.")
-    else:
-        chosen_dataset = st.selectbox("Select dataset:", datasets)
-        dataset_to_csv = BytesIO(chosen_dataset.data)
-        df = pd.read_csv(dataset_to_csv)
-        st.write(df.head())
-        return chosen_dataset
-
-
-def select_input_features(data) -> List[str]:
-    if data is None:
-        st.write("Please select a dataset first.")
-    else:
-        return st.multiselect("Select input features", feature_list)
-
-
-def select_target_feature(feature_list) -> str:
-    if input_features is None:
-        st.write("First select input features")
-    else:
-        return st.selectbox("Select target feature", feature_list)
-
-
-def show_features() -> None:
-    st.write("Input features: " +
-             ', '.join([feature.name for feature in input_features])
-             if input_feature_names != [] else "No input features selected")
-    st.write("Target feature: " + target_feature.name if target_feature is not
-             None else "No target feature selected")
-
-
-def choose_model() -> str:
-    if input_features is None or input_features == []:
-        st.write("First select input features")
-    elif target_feature is None:
-        st.write("First select a target feature")
-    else:
-        if target_feature in input_features:
-            st.write("Target feature can't be one of the input features.")
-        if target_feature.type == "categorical":
-            chosen_model = st.selectbox("Choose a classification model",
-                                        CLASSIFICATION_MODELS)
-        else:
-            chosen_model = st.selectbox("Choose a regression model",
-                                        REGRESSION_MODELS)
-        return chosen_model
-
-
-def choose_train_split() -> float:
-    train_split = st.slider("Training data percentage", 50, 99, 75)
-    st.write("##### Updated Data Splits:")
-    st.write(f"Train Split: {train_split}%")
-    st.write(f"Test Split: {100 - train_split}%")
-    return train_split
-
-
-def choose_metrics() -> List[str]:
-    metrics = []
-    if chosen_model is None:
-        st.write("First choose a model")
-    elif chosen_model in CLASSIFICATION_MODELS:
-        metrics = st.multiselect("Select Classification Metrics", METRICS[4:])
-    elif chosen_model in REGRESSION_MODELS:
-        metrics = st.multiselect("Select Regression Metrics", METRICS[:4])
-    return metrics
-
-
-def metric_to_classes(chosen_metrics: List[str]) -> List["Metric"]:
-    metric_models = []
-    if chosen_metrics != []:
-        for i in range(len(chosen_metrics)):
-            metric_models.append(get_metric(chosen_metrics[i]))
-            st.write(chosen_metrics[i])
-    return metric_models
-
-
-def show_summary() -> None:
-    col1, col2 = st.columns([2, 7])
-    col1.write("Dataset")
-    col1.write("Input Features")
-    col1.write("Target Feature")
-    col1.write("Model")
-    col1.write("Data Split")
-    col1.write("Metrics")
-    col2.write(dataset.name if dataset is not None else "No dataset selected")
-    col2.write(', '.join(input_feature_names)
-               if input_feature_names != [] else "No input features selected")
-    col2.write(target_feature.name
-               if target_feature is not None else "No target feature selected")
-    col2.write(chosen_model if model is not None else "No model selected")
-    col2.write(f"Train: {train_split}% // Test: {100 - train_split}%")
-    col2.write(', '.join(chosen_metrics)
-               if chosen_metrics != [] else "No metrics selected")
-
-
 def check_inputs() -> bool:
-    if dataset is None or input_features == [] or input_feature_names == [] \
+    if dataset is None or input_features == [] \
      or target_feature is None or model is None or chosen_metrics == []:
         st.write("First finish the pipeline inputs")
         return False
     else:
         return True
-
-
-def show_results() -> None:
-    if st.button("Compute results"):
-        pipeline.execute()
-        st.write("#### Metrics:")
-        calculating = st.caption("Calculating...")
-        progress_bar = st.progress(0)
-        for percentage in range(101):
-            progress_bar.progress(percentage)
-            time.sleep(0.03)
-        time.sleep(0.5)
-        progress_bar.empty()
-        calculating.empty()
-        for i in range(len(chosen_metrics)):
-            st.write(f"{chosen_metrics[i]}: \
-                     {pipeline._metrics_results[i][1]:.2f}")
-
-
-def save_pipeline() -> None:
-    st.header("Save Pipeline")
-    name_pipeline = st.text_input("Enter a name for this pipeline")
-    version = st.text_input("Enter a version for this pipeline")
-    if st.button("Save Pipeline"):
-        artifact_pipeline = pipeline.to_artifact(name_pipeline, version)
-        automl.registry.register(artifact_pipeline)
-        st.write("Sucessfully saved pipeline")
 
 
 dataset = None
@@ -172,37 +41,35 @@ target_feature = None
 model = None
 
 st.header("Step 1. Choose Dataset")
-dataset = choose_dataset()
+dataset = mh.choose_dataset(datasets)
 
 st.header("Step 2. Select Features")
 if dataset is not None:
     feature_list = detect_feature_types(dataset)
-    input_features = select_input_features(dataset)
-input_feature_names = [feature.name for feature in input_features]
+    input_features = mh.select_input_features(dataset, feature_list)
 new_feature_list = [feature for feature
                     in feature_list if feature not in input_features]
 
 st.header("Step 3. Select target feature")
-target_feature = select_target_feature(new_feature_list)
-show_features()
+target_feature = mh.select_target_feature(input_features, new_feature_list)
+mh.show_features(input_features, target_feature)
 
 st.header("Step 4. Choose a model")
 
-chosen_model = choose_model()
+chosen_model = mh.choose_model(input_features, target_feature)
 if chosen_model is not None:
     model = get_model(chosen_model)
 
 st.header("Step 5. Select data split")
-train_split = choose_train_split()
+train_split = mh.choose_train_split()
 split = train_split / 100
 
 st.header("Step 6. Choose Metrics")
-chosen_metrics = choose_metrics()
-metric_classes = metric_to_classes(chosen_metrics)
+chosen_metrics = mh.choose_metrics(chosen_model)
+metric_classes = mh.metric_to_classes(chosen_metrics)
 
 st.header("Pipeline Summary")
-
-st.header("Results")
+pipeline = None
 if check_inputs() is True:
     pipeline = Pipeline(dataset=dataset,
                         metrics=metric_classes,
@@ -210,5 +77,9 @@ if check_inputs() is True:
                         input_features=input_features,
                         target_feature=target_feature,
                         split=split)
-    show_results()
-    save_pipeline()
+    mh.show_summary(pipeline)
+
+st.header("Results")
+if pipeline is not None:
+    mh.show_results(pipeline, chosen_metrics)
+    mh.save_pipeline(automl, pipeline)
