@@ -7,7 +7,8 @@ from autoop.core.storage import Storage
 
 
 class Database():
-
+    """Manages key-value data storage with persistence,
+    providing methods to set, get, delete, and list data entries"""
     def __init__(self, storage: Storage) -> None:
         """Initialize the Database instance with storage and
             load any existing data

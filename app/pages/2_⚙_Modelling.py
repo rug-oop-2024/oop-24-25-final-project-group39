@@ -10,7 +10,14 @@ from autoop.core.ml.pipeline import Pipeline
 st.set_page_config(page_title="Modelling", page_icon="📈")
 
 
-def write_helper_text(text: str):
+def write_helper_text(text: str) -> None:
+    """
+    Writes helper text in a Streamlit app with custom styling
+    Args:
+        text (str): The helper text to be displayed
+    Returns:
+        None
+    """
     st.write(f"<p style=\"color: #888;\">{text}</p>", unsafe_allow_html=True)
 
 
@@ -26,8 +33,13 @@ datasets = automl.registry.list(type="dataset")
 
 
 def check_inputs() -> bool:
-    if dataset is None or input_features == [] \
-     or target_feature is None or model is None or chosen_metrics == []:
+    """
+    Checks if all necessary inputs for the pipeline are provided
+    Returns:
+        bool: True if all inputs are provided, otherwise False.
+    """
+    if (dataset is None or input_features == [] or target_feature is None
+            or model is None or chosen_metrics == []):
         st.write("First finish the pipeline inputs")
         return False
     else:

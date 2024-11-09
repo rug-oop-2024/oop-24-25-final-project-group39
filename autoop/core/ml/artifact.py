@@ -5,7 +5,9 @@ import io
 
 
 class Artifact():
-
+    """Represents an artifact with metadata, data, and
+    associated properties like name, version, and tags
+    """
     def __init__(self, name: str, asset_path: str,
                  version: str, data: bytes,
                  type: str, metadata: Dict[str, str] = {},
@@ -36,66 +38,82 @@ class Artifact():
 
     @property
     def name(self) -> str:
+        """Gets the name of the artifact"""
         return self._name
 
     @name.setter
     def name(self, new_name: str) -> None:
+        """Sets the name of the artifact"""
         self._name = new_name
 
     @property
     def asset_path(self) -> str:
+        """Gets the asset path of the artifact"""
         return self._asset_path
 
     @asset_path.setter
     def asset_path(self, new_asset_path: str) -> None:
+        """Sets the asset path of the artifact"""
         self._asset_path = new_asset_path
 
     @property
     def version(self) -> str:
+        """Gets the version of the artifact"""
         return self._version
 
     @version.setter
     def version(self, new_version: str) -> None:
+        """Sets the version of the artifact"""
         self._version = new_version
 
     @property
     def data(self) -> bytes:
+        """Gets the data associated with the artifact"""
         return self._data
 
     @data.setter
     def data(self, new_data: bytes) -> None:
+        """Sets the data associated with the artifact"""
         self._data = new_data
 
     @property
     def metadata(self) -> Dict[str, str]:
+        """Gets the metadata dictionary of the artifact"""
         return self._metadata
 
     @metadata.setter
     def metadata(self, new_metadata: Dict[str, str]) -> None:
+        """Sets the metadata dictionary of the artifact"""
         self._metadata = new_metadata
 
     @property
     def type(self) -> str:
+        """Gets the type of the artifact"""
         return self._type
 
     @type.setter
     def type(self, new_type: str) -> None:
+        """Sets the type of the artifact"""
         self._type = new_type
 
     @property
     def tags(self) -> List[str]:
+        """Gets the tags associated with the artifact"""
         return self._tags
 
     @tags.setter
-    def tags(self, new_tags: List[str]):
+    def tags(self, new_tags: List[str]) -> None:
+        """Sets the tags associated with the artifact"""
         self._tags = new_tags
 
     @property
     def id(self) -> str:
+        """Gets the ID of the artifact"""
         return self._id
 
     @id.setter
     def id(self, new_id: str) -> None:
+        """Sets the ID of the artifact"""
         self._id = new_id
 
     def _generate_id(self) -> str:

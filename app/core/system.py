@@ -26,7 +26,9 @@ class ArtifactRegistry():
         Registers an artifact by saving its data in storage and
         metadata in the database
         Args:
-            artifact (Artifact):
+            artifact (Artifact): The artifact to register
+        Returns:
+            None
         """
         # save the artifact in the storage
         self._storage.save(artifact.data, artifact.asset_path)
@@ -98,7 +100,7 @@ class ArtifactRegistry():
         self._database.delete("artifacts", artifact_id)
 
 
-class AutoMLSystem:
+class AutoMLSystem():
     _instance = None
 
     def __init__(self, storage: LocalStorage, database: Database) -> None:

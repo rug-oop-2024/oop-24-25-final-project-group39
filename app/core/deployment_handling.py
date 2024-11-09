@@ -1,13 +1,19 @@
 import streamlit as st
+import pandas as pd
 from autoop.core.ml.dataset import Dataset
+from autoop.core.ml.pipeline import Pipeline
+from app.core.system import AutoMLSystem
+
+automl = AutoMLSystem.get_instance()
 
 
-def delete_pipeline(automl, pipeline) -> None:
+def delete_pipeline(automl: AutoMLSystem, pipeline: Pipeline) -> None:
     """
-    Deletes the specified pipeline
+    Deletes the pipeline from the AutoML system
     Args:
-        automl: The AutoML system instance that manages the pipeline
-        pipeline: The pipeline object to be deleted
+        automl (AutoMLSystem): The AutoML system instance that
+        manages the pipeline
+        pipeline (Pipeline): The pipeline object to be deleted
     Returns:
         None
     """
@@ -16,14 +22,15 @@ def delete_pipeline(automl, pipeline) -> None:
     st.write(f"Pipeline '{pipeline.name}' deleted successfully.")
 
 
-def compute_results(pipeline, dataset, dataframe) -> None:
+def compute_results(pipeline: Pipeline, dataset: Dataset,
+                    dataframe: pd.DataFrame) -> None:
     """
     Computes the results for the given pipeline using a dataset and dataframe,
-    and displays the metrics
+    and displays the selected metrics
     Args:
-        pipeline: The pipeline to execute on the provided data
-        dataset: The dataset object containing metadata
-        dataframe: The data in the form of a DataFrame
+        pipeline (Pipeline): The pipeline to execute on the data
+        dataset (Dataset): The dataset object containing metadata
+        dataframe (pd.DataFrame): The data in the form of a DataFrame
     Returns:
         None
     """
