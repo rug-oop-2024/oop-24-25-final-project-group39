@@ -6,10 +6,15 @@ from sklearn.neighbors import KNeighborsClassifier
 
 class KNearestNeighbors(Model):
     def __init__(self) -> None:
+        """
+        Initializes the knn model
+        Returns:
+            None
+        """
         super().__init__(type="classification")
         self.model = KNeighborsClassifier()
 
-    def fit(self, observations: np.ndarray, ground_truth: np.ndarray):
+    def fit(self, observations: np.ndarray, ground_truth: np.ndarray) -> None:
         """
         Fits the data by storing the observations
         and their corresponding labels.

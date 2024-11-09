@@ -5,12 +5,12 @@ from sklearn.linear_model import LogisticRegression
 
 
 class LogisticRegressionModel(Model):
-    #def __init__(self, penalty: str = 'l2', C: float = 1.0) -> None:
-    #    super().__init__(type="classification")
-    #    self.hyperparameters = {"penalty": penalty, "C": C}
-    #    self.model = LogisticRegression(penalty=penalty, C=C)
-
     def __init__(self) -> None:
+        """
+        Initializes the logistic regression model
+        Returns:
+            None
+        """
         super().__init__(type="classification")
         self.model = LogisticRegression()
 
