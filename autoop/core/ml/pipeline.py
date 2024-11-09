@@ -47,8 +47,8 @@ class Pipeline():
         if target_feature.type == "categorical" and \
                 model.type != "classification":
             raise ValueError(
-             "Model type must be classification for "
-             "categorical target feature")
+                             "Model type must be classification for "
+                             "categorical target feature")
         if target_feature.type == "continuous" and model.type != "regression":
             raise ValueError(
                 "Model type must be regression for continuous target feature")
@@ -147,10 +147,9 @@ Pipeline(
                          for vector in self._input_vectors]
         self._test_X = [vector[int(split * len(vector)):]
                         for vector in self._input_vectors]
-        self._train_y = self._output_vector[:int(split *
-                                                 len(self._output_vector))]
-        self._test_y = self._output_vector[int(split *
-                                               len(self._output_vector)):]
+        split_len = int(split * len(self._output_vector))
+        self._train_y = self._output_vector[:split_len]
+        self._test_y = self._output_vector[split_len:]
 
     def _compact_vectors(self, vectors: List[np.array]) -> np.array:
         """

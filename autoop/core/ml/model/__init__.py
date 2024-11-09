@@ -1,3 +1,7 @@
+"""
+This module provides a function to retrieve
+various classification and regression models.
+"""
 from autoop.core.ml.model.model import Model
 from autoop.core.ml.model.regression.lasso import Lasso
 from autoop.core.ml.model.regression.multi_linear_regression import (

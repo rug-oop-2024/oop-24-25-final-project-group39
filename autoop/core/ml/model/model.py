@@ -68,7 +68,7 @@ class Model(ABC):
 
     @abstractmethod
     def fit(self, X: np.ndarray, Y: np.ndarray) -> None:
-        """"Fits the model to the training data.
+        """Fits the model to the training data.
         :Param X : The input data for training.
         :Param Y : The target labels for training.
         """
