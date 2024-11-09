@@ -127,7 +127,7 @@ class Artifact():
         return f"{encoded_path}_{self.version}"
 
     def read(self) -> pd.DataFrame:
-        """"
+        """
         Decodes the stored data
         Returns:
           pd.DataFrame: The stored data as bytes

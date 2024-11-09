@@ -7,13 +7,23 @@ from typing import Literal
 from abc import ABC, abstractmethod
 
 from autoop.core.ml.artifact import Artifact
-# Don't know what for Artifact can be used
 
 
 class Model(ABC):
-    def __init__(self, type, parameters):
-        self._parameters: dict = parameters
-        self._type: Literal["regression", "classification"] = type
+    """Abstract base class for machine learning models"""
+    def __init__(self, type: Literal["regression", "classification"],
+                 parameters: dict) -> None:
+        """
+        Initializes the model
+        Args:
+            type (Literal["regression", "classification"]): The type of model,
+            either "regression" or "classification"
+            parameters (dict)): A dictionary of parameters
+        Returns:
+            None
+        """
+        self._parameters = parameters
+        self._type = type
 
     @property
     def parameters(self) -> dict:

@@ -50,7 +50,7 @@ def get_metric(name: str) -> Union["MeanAbsoluteError", "MeanSquaredError",
 
 class Metric(ABC):
     """
-    Base class for all metrics.
+    Base class for all metrics
     """
     @abstractmethod
     def evaluate(y_true: np.ndarray, y_pred: np.ndarray) -> float:
@@ -74,6 +74,7 @@ class Metric(ABC):
 
 
 class MeanAbsoluteError(Metric):
+    """Computes the Mean Absolute Error"""
     def evaluate(self, y_true: np.ndarray, y_pred: np.ndarray) -> float:
         """
         Computes the Mean Absolute Error
@@ -87,6 +88,7 @@ class MeanAbsoluteError(Metric):
 
 
 class MeanSquaredError(Metric):
+    """Computes the Mean Squared Error"""
     def evaluate(self, y_true: np.ndarray, y_pred: np.ndarray) -> float:
         """
         Computes the Mean squared Error
@@ -100,6 +102,7 @@ class MeanSquaredError(Metric):
 
 
 class RootMeanSquaredError(Metric):
+    """Computes the Root Mean Squared Error"""
     def evaluate(self, y_true: np.ndarray, y_pred: np.ndarray) -> float:
         """
         Computes the Root Mean Squared Error
@@ -113,6 +116,7 @@ class RootMeanSquaredError(Metric):
 
 
 class RSquared(Metric):
+    """Computes the R-squared"""
     def evaluate(self, y_true: np.ndarray, y_pred: np.ndarray) -> float:
         """
         Computes the R-squared, coefficient of determination
@@ -131,6 +135,7 @@ class RSquared(Metric):
 
 
 class Accuracy(Metric):
+    """Computes the accuracy score"""
     def evaluate(self, y_true: np.ndarray, y_pred: np.ndarray) -> float:
         """
         Computes the accuracy score
@@ -144,6 +149,7 @@ class Accuracy(Metric):
 
 
 class MacroAveragePrecision(Metric):
+    """Computes the macro-average precision score"""
     def evaluate(self, y_true: np.ndarray, y_pred: np.ndarray) -> float:
         """
         Computes the macro-average precision score
@@ -167,6 +173,7 @@ class MacroAveragePrecision(Metric):
 
 
 class MacroAverageRecall(Metric):
+    """Computes the macro-average recall score"""
     def evaluate(self, y_true: np.ndarray, y_pred: np.ndarray) -> float:
         """
         Computes the macro-average recall score

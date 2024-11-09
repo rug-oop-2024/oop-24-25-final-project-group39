@@ -4,6 +4,7 @@ import io
 
 
 class Dataset(Artifact):
+    """Represents a dataset artifact containing a pandas DataFrame"""
 
     def __init__(self, *args, **kwargs) -> None:
         """Initializes a dataset artifact

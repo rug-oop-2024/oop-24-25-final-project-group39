@@ -2,6 +2,8 @@ from typing import Literal
 
 
 class Feature():
+    """Represents a feature with a name and type (regression or classification)
+    """
     # attributes here
     def __init__(self, name: str,
                  type: Literal["regression", "classification"]) -> None:

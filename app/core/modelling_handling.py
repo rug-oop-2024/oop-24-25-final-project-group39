@@ -76,8 +76,8 @@ def show_features(input_features: List[str], target_feature: str) -> None:
         None
     """
     input_feature_names = [feature.name for feature in input_features]
-    st.write("Input features: " +
-             ', '.join([feature.name for feature in input_features])
+    st.write("Input features: " + ', '.join([feature.name
+                                             for feature in input_features])
              if input_feature_names != [] else "No input features selected")
     st.write("Target feature: " + target_feature.name if target_feature is not
              None else "No target feature selected")
@@ -178,7 +178,7 @@ def show_summary(pipeline: Pipeline) -> None:
                           pipeline in pipeline._input_features]))
     col2.write(pipeline._target_feature.name)
     col2.write(pipeline.model.__class__.__name__)
-    col2.write(f"Train: {pipeline._split*100}% // Test: "
+    col2.write(f"Train: {pipeline._split*100}% // Test: ",
                f"{(1 - pipeline._split) * 100}%")
     col2.write(', '.join([metric.__class__.__name__
                           for metric in pipeline._metrics]))

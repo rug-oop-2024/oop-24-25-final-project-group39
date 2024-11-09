@@ -5,6 +5,7 @@ from sklearn.neighbors import KNeighborsClassifier
 
 
 class KNearestNeighbors(Model):
+    """K-Nearest Neighbors model for classification using scikit-learn"""
     def __init__(self, n_neighbors: int = 3) -> None:
         """
         Initializes the knn model

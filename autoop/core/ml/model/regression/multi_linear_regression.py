@@ -5,6 +5,8 @@ from sklearn.linear_model import LinearRegression
 
 
 class MultipleLinearRegression(Model):
+    """Multiple linear regression model for
+    regression tasks using scikit-learn"""
     def __init__(self) -> None:
         """
         Initializes the multiple linear regression model

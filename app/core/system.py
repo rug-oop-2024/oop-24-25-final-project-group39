@@ -7,6 +7,9 @@ from typing import List
 
 
 class ArtifactRegistry():
+    """
+    A class that manages the registration, retrieval, and deletion of artifacts
+    """
     def __init__(self,
                  database: Database,
                  storage: Storage) -> None:
@@ -101,6 +104,10 @@ class ArtifactRegistry():
 
 
 class AutoMLSystem():
+    """
+    A singleton class that manages the entire AutoML system, including storage,
+    database management, and artifact registration
+    """
     _instance = None
 
     def __init__(self, storage: LocalStorage, database: Database) -> None:

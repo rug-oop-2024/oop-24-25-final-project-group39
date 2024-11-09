@@ -5,6 +5,7 @@ from sklearn.tree import DecisionTreeClassifier
 
 
 class DecisionTree(Model):
+    """Decision tree model for classification using scikit-learn"""
     def __init__(self) -> None:
         """
         Initializes the decision tree model

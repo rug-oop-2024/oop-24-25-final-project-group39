@@ -5,6 +5,7 @@ from sklearn.linear_model import LogisticRegression
 
 
 class LogisticRegressionModel(Model):
+    """Logistic Regression model for classification using scikit-learn"""
     def __init__(self, penalty: str = 'l2',
                  C: float = 1.0, max_iter: int = 100) -> None:
         """

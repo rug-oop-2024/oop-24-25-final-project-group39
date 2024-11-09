@@ -5,6 +5,7 @@ from sklearn.linear_model import Lasso as SklearnLasso
 
 
 class Lasso(Model):
+    """Lasso regression model for regression tasks using scikit-learn"""
     def __init__(self, alpha: float = 1.0) -> None:
         """
         Initializes the lasso model

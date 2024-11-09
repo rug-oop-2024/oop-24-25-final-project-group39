@@ -38,8 +38,8 @@ def check_inputs() -> bool:
     Returns:
         bool: True if all inputs are provided, otherwise False.
     """
-    if (dataset is None or input_features == [] or target_feature is None
-            or model is None or chosen_metrics == []):
+    if dataset is None or input_features == [] or target_feature is None \
+            or model is None or chosen_metrics == []:
         st.write("First finish the pipeline inputs")
         return False
     else:
