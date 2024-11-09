@@ -112,7 +112,7 @@ class LocalStorage(Storage):
         with open(path, 'rb') as f:
             return f.read()
 
-    def delete(self, key: str = "\\") -> None:
+    def delete(self, key: str = r"\\") -> None:
         """
         Delete data at a given key
         Args:
@@ -125,7 +125,7 @@ class LocalStorage(Storage):
         self._assert_path_exists(path)
         os.remove(path)
 
-    def list(self, prefix: str = "\\") -> List[str]:
+    def list(self, prefix: str = r"\\") -> List[str]:
         """
         List all paths under a given prefix
         Args:
