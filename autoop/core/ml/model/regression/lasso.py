@@ -11,11 +11,7 @@ class Lasso(Model):
         Returns:
             None
         """
-        super().__init__(model_type="regression")
-        self.hyperparameters = {"alpha": alpha}
-        self._parameters = {
-            "coefficients": self.lasso.coef_,
-            "intercept": self.lasso.intercept_}
+        super().__init__(type="regression", parameters={"alpha": alpha})
         self.model = SklearnLasso(alpha)
 
     def fit(self, X: np.ndarray, Y: np.ndarray) -> None:
@@ -26,6 +22,9 @@ class Lasso(Model):
         corresponding to each observation
         """
         self.model.fit(X, Y)
+        self._parameters = {"coefficients": self.model.coef_,
+                            "intercept": self.model.intercept_,
+                            "alpha": self.model.alpha}
 
     def predict(self, X: np.ndarray) -> np.ndarray:
         """

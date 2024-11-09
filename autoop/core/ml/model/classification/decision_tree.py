@@ -11,7 +11,7 @@ class DecisionTree(Model):
         Returns:
             None
         """
-        super().__init__(type="classification")
+        super().__init__(type="classification", parameters={})
         self.model = DecisionTreeClassifier()
 
     def fit(self, observations: np.ndarray, ground_truth: np.ndarray) -> None:
@@ -21,6 +21,11 @@ class DecisionTree(Model):
         :param ground_truth: Numpy array with the corresponding labels.
         """
         self.model.fit(observations, ground_truth)
+        self.parameters = {
+            "feature_importances": self.model.feature_importances_.tolist(),
+            "max_depth": self.model.get_depth(),
+            "n_leaves": self.model.get_n_leaves()
+        }
 
     def predict(self, observations: np.ndarray) -> np.ndarray:
         """

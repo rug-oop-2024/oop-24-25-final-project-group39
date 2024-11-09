@@ -13,11 +13,11 @@ from autoop.core.ml.model.classification.logistic_regression import (
     LogisticRegressionModel)
 
 
-REGRESSION_MODELS = ["KNearestNeighbors", "DecisionTree",
-                     "LogisticRegressionModel"]
+CLASSIFICATION_MODELS = ["KNearestNeighbors", "DecisionTree",
+                         "LogisticRegressionModel"]
 
-CLASSIFICATION_MODELS = ["MultipleLinearRegression",
-                         "Lasso", "RidgeModel"]
+REGRESSION_MODELS = ["MultipleLinearRegression",
+                     "Lasso", "RidgeModel"]
 
 
 def get_model(model_name: str) -> Model:
@@ -30,21 +30,22 @@ def get_model(model_name: str) -> Model:
     Raises:
         ValueError: If the model_name is not in the accepted list of models
     """
-    if model_name not in REGRESSION_MODELS or CLASSIFICATION_MODELS:
+    if model_name not in REGRESSION_MODELS and \
+       model_name not in CLASSIFICATION_MODELS:
         raise ValueError(f"{model_name} is not an accepted model.")
     if model_name in REGRESSION_MODELS:
         match model_name:
             case "MultipleLinearRegression":
-                return MultipleLinearRegression
+                return MultipleLinearRegression()
             case "Lasso":
-                return Lasso
+                return Lasso()
             case "RidgeModel":
-                return RidgeModel
+                return RidgeModel()
     elif model_name in CLASSIFICATION_MODELS:
         match model_name:
             case "KNearestNeighbors":
-                return KNearestNeighbors
+                return KNearestNeighbors()
             case "DecisionTree":
-                return DecisionTree
+                return DecisionTree()
             case "LogisticRegressionModel":
-                return LogisticRegressionModel
+                return LogisticRegressionModel()

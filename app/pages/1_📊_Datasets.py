@@ -1,6 +1,6 @@
 import streamlit as st
 import pandas as pd
-# from copy import deepcopy
+from copy import deepcopy
 
 from app.core.system import AutoMLSystem
 from autoop.core.ml.dataset import Dataset
@@ -34,15 +34,16 @@ if dataset == "Upload Dataset":
                                                    asset_path=new_dataset.name)
             automl.registry.register(saved_dataset)
             st.write(f"Succesfully saved dataset '{new_dataset.name}'")
+            st.rerun()
 else:
-    st.dataframe(dataset.read())
     dataset_to_csv = BytesIO(dataset.data)
     df = pd.read_csv(dataset_to_csv)
     st.write(df.head())
     if st.button(f"Delete dataset '{dataset}'"):
         automl.registry.delete(dataset.id)
         st.write(f"Succesfully removed dataset '{dataset}'")
-        st.write(f"Datasets remaining: {datasets}")
+        st.rerun()
+
 
 st.subheader("Currently saved datasets:")
 if len(datasets) == 0:

@@ -42,6 +42,13 @@ class ArtifactRegistry():
         self._database.set("artifacts", artifact.id, entry)
 
     def list(self, type: str = None) -> List[Artifact]:
+        """
+        Retrieves a list of artifacts
+        Args:
+            type (str): The type of artifacts to list
+        Returns:
+            List[Artifact]: A list of Artifact objects.
+        """
         entries = self._database.list("artifacts")
         artifacts = []
         for id, data in entries:
@@ -60,6 +67,13 @@ class ArtifactRegistry():
         return artifacts
 
     def get(self, artifact_id: str) -> Artifact:
+        """
+        Retrieves an artifact
+        Args:
+            artifact_id (str): The ID of the artifact
+        Returns:
+            Artifact: The retrieved artifact
+        """
         data = self._database.get("artifacts", artifact_id)
         return Artifact(
             name=data["name"],
@@ -71,7 +85,14 @@ class ArtifactRegistry():
             type=data["type"],
         )
 
-    def delete(self, artifact_id: str):
+    def delete(self, artifact_id: str) -> None:
+        """
+        Deletes an artifact
+        Args:
+            artifact_id (str): The ID of the artifact
+        Returns:
+            None
+        """
         data = self._database.get("artifacts", artifact_id)
         self._storage.delete(data["asset_path"])
         self._database.delete("artifacts", artifact_id)
@@ -80,13 +101,26 @@ class ArtifactRegistry():
 class AutoMLSystem:
     _instance = None
 
-    def __init__(self, storage: LocalStorage, database: Database):
+    def __init__(self, storage: LocalStorage, database: Database) -> None:
+        """
+        Initializes the AutoMLSystem
+        Args:
+            storage (LocalStorage): The storage for managing artifact files
+            database (Database): The database for managing artifact metadata
+        Returns:
+            None
+        """
         self._storage = storage
         self._database = database
         self._registry = ArtifactRegistry(database, storage)
 
     @staticmethod
-    def get_instance():
+    def get_instance() -> 'AutoMLSystem':
+        """
+        Retrieves the singleton instance of the AutoMLSystem
+        Returns:
+            AutoMLSystem: The singleton instance of the AutoMLSystem
+        """
         # Check about the backslashes, maybe change this to generic
         # for all operating systems
         if AutoMLSystem._instance is None:
@@ -100,5 +134,10 @@ class AutoMLSystem:
         return AutoMLSystem._instance
 
     @property
-    def registry(self):
+    def registry(self) -> ArtifactRegistry:
+        """
+        Provides access to the artifact registery
+        Returns:
+            ArtifactRegistry: The registry for managing artifacts
+        """
         return self._registry

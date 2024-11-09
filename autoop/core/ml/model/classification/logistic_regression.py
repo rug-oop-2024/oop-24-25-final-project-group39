@@ -5,14 +5,25 @@ from sklearn.linear_model import LogisticRegression
 
 
 class LogisticRegressionModel(Model):
-    def __init__(self) -> None:
+    def __init__(self, penalty: str = 'l2',
+                 C: float = 1.0, max_iter: int = 100) -> None:
         """
         Initializes the logistic regression model
+        Args:
+            penalty (str): Regularization technique, default is 'l2'
+            C (float): Inverse of regularization strength
+            max_iter (int): Maximum number of iterations
+            for the model to converge
         Returns:
             None
         """
-        super().__init__(type="classification")
-        self.model = LogisticRegression()
+        super().__init__(type="classification",
+                         parameters={"penalty": penalty,
+                                     "C": C,
+                                     "max_iter": max_iter})
+        self.model = LogisticRegression(penalty=penalty,
+                                        C=C,
+                                        max_iter=max_iter)
 
     def fit(self, observations: np.ndarray, ground_truth: np.ndarray) -> None:
         """

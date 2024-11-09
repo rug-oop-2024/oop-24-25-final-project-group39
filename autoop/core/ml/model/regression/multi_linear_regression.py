@@ -11,10 +11,8 @@ class MultipleLinearRegression(Model):
         Returns:
             None
         """
-        super().__init__(model_type="regression")
+        super().__init__(type="regression", parameters={})
         self.model = LinearRegression()
-        self.hyperparameters = {"coef_": self.model.coef_,
-                                "intercept_": self.model.intercept_}
 
     def fit(self, x: np.ndarray, y: np.ndarray) -> None:
         """
@@ -23,6 +21,8 @@ class MultipleLinearRegression(Model):
         :param y : Numpy array of the variable to predict
         """
         self.model.fit(x, y)
+        self.parameters = {"coef_": self.model.coef_,
+                           "intercept_": self.model.intercept_}
 
     def predict(self, x: np.ndarray) -> np.ndarray:
         """

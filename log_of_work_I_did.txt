@@ -3,7 +3,7 @@ removed the emoij's.
 Added the draft version of detect_features in functional-feature.py
 - 2-11-2024
 added the precision method in metric.py
-added a draft version of the Artifact claas in artifact.py
+added a draft version of the Artifact class in artifact.py
 - 3-11-2024
 added a prevention of error in metric.py
 added a draft version of model in ml/model/model.py
@@ -19,3 +19,9 @@ Fixed flake8 on all the files, some are still missing docstrings
 Fixed the way the models are called (they are not called as intended in ini.py from model)
 - 8-11-2024/9-11-2024
 Make the start of html file
+- 9-11-2024
+Made the DSC report in the folder.
+Made the reports for all the metrics.
+Made the report for the flake8 design choice.
+Fixed regression models.
+Fixed classification models except logistic.

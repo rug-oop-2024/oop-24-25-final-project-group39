@@ -11,7 +11,7 @@ class RidgeModel(Model):
         Returns:
             None
         """
-        super().__init__(model_type="regression")
+        super().__init__(type="regression", parameters={"alpha": alpha})
         self.model = Ridge(alpha=alpha)
 
     def fit(self, X: np.ndarray, y: np.ndarray) -> None:

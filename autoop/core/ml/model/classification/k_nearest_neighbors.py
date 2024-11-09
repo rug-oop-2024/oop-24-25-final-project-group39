@@ -5,14 +5,15 @@ from sklearn.neighbors import KNeighborsClassifier
 
 
 class KNearestNeighbors(Model):
-    def __init__(self) -> None:
+    def __init__(self, n_neighbors: int = 3) -> None:
         """
         Initializes the knn model
         Returns:
             None
         """
-        super().__init__(type="classification")
-        self.model = KNeighborsClassifier()
+        super().__init__(type="classification",
+                         parameters={"n_neighbors": n_neighbors})
+        self.model = KNeighborsClassifier(n_neighbors=n_neighbors)
 
     def fit(self, observations: np.ndarray, ground_truth: np.ndarray) -> None:
         """

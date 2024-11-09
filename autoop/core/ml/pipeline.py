@@ -199,3 +199,15 @@ Pipeline(
             "metrics": self._metrics_results,
             "predictions": self._predictions,
         }
+
+    def to_artifact(self, name: str) -> "Artifact":
+        """
+        Serializes the model or object and converts it into an Artifact
+    Args:
+        name (str): The name to assign to the artifact
+    Returns:
+        Artifact: An Artifact object containing the serialized model/data
+    """
+        data = pickle.dumps(self)
+        return Artifact(name=name, data=data,
+                        asset_path=f"pipeline/{name}", type="pipieline")
