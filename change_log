@@ -36,3 +36,9 @@ pipeline.py - Added to_artifact function to save pipeline
 artifact.py - Gave version default value to get rid of error while saving pipeline
 1_Datasets.py - Changed everything into functions
 2_Modelling.py - Changed everything into functions
+
+9-11 11:45:
+metric.py - Fixed classes
+model __init__.py - Fixed if-statement and switched classification / regression
+2_Modelling.py - Fixed bugs
+3_Deployment.py - Fixed bugs
