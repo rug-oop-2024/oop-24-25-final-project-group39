@@ -117,7 +117,7 @@ class LocalStorage(Storage):
         Delete data at a given key
         Args:
             key (str): Key to delete data,
-                defaults to "\\" for Windows
+                defaults to r'\\' for Windows
         Returns:
             None
         """
@@ -130,7 +130,7 @@ class LocalStorage(Storage):
         List all paths under a given prefix
         Args:
             prefix (str): Prefix to list files,
-                defaults to "\\" for Windows
+                defaults to r'\\' for Windows
         Returns:
             List[str]: List of paths
         """
