@@ -11,16 +11,16 @@
 # Date: 3-11-2024
 # Decision: Implementation of LassoCV for regularized linear regression
 # Status: Accepted
-# Motivation: LassoCV selects important features and adresses overfitting in high-dimensional data
-# Reason: LassoCV applies l1 regularization which helps with selecting significant features (shrinking some other feautre coefficients to zero), and reducing complexity
-# Limitations: Can be too agressive with eliminating feautures
+# Motivation: LassoCV selects important features and addresses overfitting in high-dimensional data
+# Reason: LassoCV applies l1 regularization which helps with selecting significant features (shrinking some other feature coefficients to zero), and reducing complexity
+# Limitations: Can be too aggressive with eliminating features
 # Alternatives: Ridge Regression
 
 # DSC-0009: Use of DecisionTree model
 # Date: 4-11-2024
 # Decision: implementation of DecisionTree model for classification
 # Status: Accepted
-# Motivation: The DecisionTree model provides interpretaility and transparency 
+# Motivation: The DecisionTree model provides interpretability and transparency 
 # Reason: The model splits data into branches based on feature values
 # Limitations: It is prone to overfitting, which can affect generalization to new data
 # Alternatives: Random Forests or Logistic Regression
@@ -39,7 +39,7 @@
 # Decision: Implementation of Ridge for regularized linear regression
 # Status: Accepted
 # Motivation: Ridge minimizes overfitting in data without eliminating features
-# Reason: The model uses l2 regularization th shrink large coefficients, reducing model complexity without setting coefficients to zero. Which makes it very effective for multicollinear datasets
+# Reason: The model uses l2 regularization to shrink large coefficients, reducing model complexity without setting coefficients to zero. Which makes it very effective for multicollinear datasets
 # Limitations: Less effective at feature selection when compared to Lasso
 # Alternatives: Lasso regression
 
@@ -57,7 +57,7 @@
 # Decision: Implementation of Linear SVC model for classification
 # Status: Rejected
 # Motivation: The model maximises the margin between classes in a linear classification problem
-# Reason: The model works when the data is linearly seperable but may not perform with complex non-linear relationships
+# Reason: The model works when the data is linearly separable but may not perform with complex non-linear relationships
 # Limitations: Struggles with non-linear data, and may require significant tuning of hyperparameters to avoid underfitting or overfitting
 # Alternatives: Random Forest model
 
@@ -66,6 +66,6 @@
 # Decision: Implementation of the Random Forest model for classification
 # Status: Accepted
 # Motivation: The model mitigates overfitting issues
-# Reason: Random Forest combines multiple Decision Trees, the predicitons of these trees are then aggregated to produce a more accurate and generalized result
+# Reason: Random Forest combines multiple Decision Trees, the predictions of these trees are then aggregated to produce a more accurate and generalized result
 # Limitations: Computationally expensive and harder to interpret
 # Alternatives: Gradient Boosting or XGBoost
