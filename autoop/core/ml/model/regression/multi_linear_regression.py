@@ -11,10 +11,8 @@ class MultipleLinearRegression(Model):
         Returns:
             None
         """
-        super().__init__(model_type="regression")
+        super().__init__(type="regression")
         self.model = LinearRegression()
-        self.hyperparameters = {"coef_": self.model.coef_,
-                                "intercept_": self.model.intercept_}
 
     def fit(self, x: np.ndarray, y: np.ndarray) -> None:
         """

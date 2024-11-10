@@ -11,7 +11,7 @@ class Lasso(Model):
         Returns:
             None
         """
-        super().__init__(model_type="regression")
+        super().__init__(type="regression")
         self.hyperparameters = {"alpha": alpha}
         self._parameters = {
             "coefficients": self.lasso.coef_,
