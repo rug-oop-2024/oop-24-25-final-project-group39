@@ -1,6 +1,5 @@
 import streamlit as st
 import pandas as pd
-# from copy import deepcopy
 
 from app.core.system import AutoMLSystem
 from autoop.core.ml.dataset import Dataset
@@ -9,9 +8,6 @@ automl = AutoMLSystem.get_instance()
 
 
 datasets = automl.registry.list(type="dataset")
-
-# your code here
-
 
 st.write("""
          # Datasets
@@ -23,11 +19,13 @@ options = ["Upload Dataset"]
 for dataset in datasets:
     options.append(dataset)
 dataset_artifact = st.selectbox("Select Dataset", options)
+
 if dataset_artifact == "Upload Dataset":
     new_dataset = st.file_uploader("Select a dataset file", type="csv")
     if new_dataset is not None:
         df = pd.read_csv(new_dataset)
         st.write(df.head())
+
         if st.button(f"Save dataset '{new_dataset.name}'"):
             saved_dataset = Dataset.from_dataframe(data=df,
                                                    name=new_dataset.name,

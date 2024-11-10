@@ -23,13 +23,13 @@ automl = AutoMLSystem.get_instance()
 
 datasets = automl.registry.list(type="dataset")
 
-# your code here
-
 
 def check_inputs() -> bool:
     if dataset is None or input_features == [] \
      or target_feature is None or model is None or chosen_metrics == []:
         st.write("First finish the pipeline inputs")
+        st.write(dataset)
+        st.write(model)
         return False
     else:
         return True
