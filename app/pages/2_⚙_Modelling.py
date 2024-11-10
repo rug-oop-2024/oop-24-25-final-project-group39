@@ -5,6 +5,7 @@ from app.core.system import AutoMLSystem
 from autoop.functional.feature import detect_feature_types
 from autoop.core.ml.model import get_model
 from autoop.core.ml.pipeline import Pipeline
+from autoop.core.ml.dataset import Dataset
 
 
 st.set_page_config(page_title="Modelling", page_icon="📈")
@@ -39,26 +40,35 @@ input_features = []
 feature_list = []
 target_feature = None
 model = None
+chosen_model = None
 
 st.header("Step 1. Choose Dataset")
-dataset = mh.choose_dataset(datasets)
+dataset_artifact = mh.choose_dataset(datasets)
+dataset = Dataset(name=dataset_artifact.name,
+                  data=dataset_artifact.data,
+                  asset_path=dataset_artifact.asset_path)
 
 st.header("Step 2. Select Features")
 if dataset is not None:
     feature_list = detect_feature_types(dataset)
     input_features = mh.select_input_features(dataset, feature_list)
-new_feature_list = [feature for feature
-                    in feature_list if feature not in input_features]
 
 st.header("Step 3. Select target feature")
-target_feature = mh.select_target_feature(input_features, new_feature_list)
-mh.show_features(input_features, target_feature)
+target_feature = mh.select_target_feature(input_features, feature_list)
+input_feature_names = [f.name for f in input_features]
+if target_feature.name in input_feature_names:
+    st.write("Target feature can not be one of the input features.")
+else:
+    mh.show_features(input_features, target_feature)
 
 st.header("Step 4. Choose a model")
 
-chosen_model = mh.choose_model(input_features, target_feature)
-if chosen_model is not None:
-    model = get_model(chosen_model)
+if target_feature.name in input_feature_names:
+    st.write("Target feature can not be one of the input features.")
+else:
+    chosen_model = mh.choose_model(input_features, target_feature)
+    if chosen_model is not None:
+        model = get_model(chosen_model)
 
 st.header("Step 5. Select data split")
 train_split = mh.choose_train_split()

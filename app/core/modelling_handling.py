@@ -99,8 +99,8 @@ def show_summary(pipeline) -> None:
     col1.write("Data Split")
     col1.write("Metrics")
     col2.write(pipeline._dataset.name)
-    col2.write(', '.join([pipeline.name for
-                          pipeline in pipeline._input_features]))
+    col2.write(', '.join([feature.name for
+                          feature in pipeline._input_features]))
     col2.write(pipeline._target_feature.name)
     col2.write(pipeline.model.__class__.__name__)
     col2.write(f"Train: {pipeline._split*100}% // Test: "
@@ -111,7 +111,7 @@ def show_summary(pipeline) -> None:
 
 def show_results(pipeline, chosen_metrics) -> None:
     if st.button("Compute results"):
-        pipeline.execute()
+        results = pipeline.execute()
         st.write("#### Metrics:")
         calculating = st.caption("Calculating...")
         progress_bar = st.progress(0)
@@ -124,6 +124,9 @@ def show_results(pipeline, chosen_metrics) -> None:
         for i in range(len(chosen_metrics)):
             st.write(f"{chosen_metrics[i]}: \
                      {pipeline._metrics_results[i][1]:.2f}")
+        with st.expander("", expanded=True):
+            st.write("### Predictions:")
+            st.write(results['predictions'])
 
 
 def save_pipeline(automl, pipeline) -> None:

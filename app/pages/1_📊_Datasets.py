@@ -22,8 +22,8 @@ st.write("""
 options = ["Upload Dataset"]
 for dataset in datasets:
     options.append(dataset)
-dataset = st.selectbox("Select Dataset", options)
-if dataset == "Upload Dataset":
+dataset_artifact = st.selectbox("Select Dataset", options)
+if dataset_artifact == "Upload Dataset":
     new_dataset = st.file_uploader("Select a dataset file", type="csv")
     if new_dataset is not None:
         df = pd.read_csv(new_dataset)
@@ -35,13 +35,14 @@ if dataset == "Upload Dataset":
             automl.registry.register(saved_dataset)
             st.write(f"Succesfully saved dataset '{new_dataset.name}'")
 else:
-    st.dataframe(dataset.read())
-    dataset_to_csv = BytesIO(dataset.data)
-    df = pd.read_csv(dataset_to_csv)
-    st.write(df.head())
-    if st.button(f"Delete dataset '{dataset}'"):
-        automl.registry.delete(dataset.id)
-        st.write(f"Succesfully removed dataset '{dataset}'")
+    dataset_class = Dataset(name=dataset_artifact.name,
+                            data=dataset_artifact.data,
+                            asset_path=dataset_artifact.asset_path)
+    st.write(dataset_class.read().head())
+    dataset_to_csv = BytesIO(dataset_artifact.data)
+    if st.button(f"Delete dataset '{dataset_class}'"):
+        automl.registry.delete(dataset_class.id)
+        st.write(f"Succesfully removed dataset '{dataset_class}'")
         st.write(f"Datasets remaining: {datasets}")
 
 st.subheader("Currently saved datasets:")
