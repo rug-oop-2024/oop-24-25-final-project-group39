@@ -45,8 +45,7 @@
               <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
 <ul class="current">
 <li class="toctree-l1 current"><a class="reference internal" href="modules.html">autoop</a><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="autoop.html">autoop package</a></li>
-<li class="toctree-l2 current"><a class="reference internal" href="autoop.html#autoop">autoop</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="autoop.html">autoop</a><ul class="current">
 <li class="toctree-l3"><a class="reference internal" href="autoop.functional.html">Functional package</a></li>
 <li class="toctree-l3 current"><a class="reference internal" href="autoop.core.html">The core of autoop</a><ul class="current">
 <li class="toctree-l4 current"><a class="reference internal" href="autoop.core.html#subpackages">Subpackages</a></li>
@@ -63,21 +62,21 @@
 <li class="toctree-l4"><a class="reference internal" href="autoop.core.ml.html#module-autoop.core.ml.dataset">Dataset module</a></li>
 <li class="toctree-l4"><a class="reference internal" href="autoop.core.ml.html#module-autoop.core.ml.feature">Feature module</a></li>
 <li class="toctree-l4"><a class="reference internal" href="autoop.core.ml.html#module-autoop.core.ml.metric">Metrics</a></li>
-<li class="toctree-l4"><a class="reference internal" href="autoop.core.ml.html#pipeline">Pipeline</a></li>
+<li class="toctree-l4"><a class="reference internal" href="autoop.core.ml.html#module-autoop.core.ml.pipeline">Pipeline</a></li>
 <li class="toctree-l4"><a class="reference internal" href="autoop.core.ml.html#module-autoop.core.ml">Module contents</a></li>
 </ul>
 </li>
 <li class="toctree-l3 current"><a class="reference internal" href="autoop.core.ml.model.html">model package</a><ul class="current">
 <li class="toctree-l4 current"><a class="reference internal" href="autoop.core.ml.model.html#subpackages">Subpackages</a></li>
 <li class="toctree-l4"><a class="reference internal" href="autoop.core.ml.model.html#module-autoop.core.ml.model.model">Machine learning basemodel</a></li>
-<li class="toctree-l4"><a class="reference internal" href="autoop.core.ml.model.html#module-contents">Module contents</a></li>
+<li class="toctree-l4"><a class="reference internal" href="autoop.core.ml.model.html#module-autoop.core.ml.model">Module contents</a></li>
 </ul>
 </li>
 <li class="toctree-l3 current"><a class="current reference internal" href="#">Classification package</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="#classification-modules">Classification modules</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#module-autoop.core.ml.model.classification.decision_tree">Decision tree module</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#module-autoop.core.ml.model.classification.k_nearest_neighbors">K-nearest neighbors module</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#random-forest-module">Random forest module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#module-autoop.core.ml.model.classification.random_forest">Random forest module</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#module-autoop.core.ml.model.classification">Module contents</a></li>
 </ul>
 </li>
@@ -103,7 +102,7 @@
   <ul class="wy-breadcrumbs">
       <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
           <li class="breadcrumb-item"><a href="modules.html">autoop</a></li>
-          <li class="breadcrumb-item"><a href="autoop.html">autoop package</a></li>
+          <li class="breadcrumb-item"><a href="autoop.html">autoop</a></li>
           <li class="breadcrumb-item"><a href="autoop.core.html">The core of autoop</a></li>
           <li class="breadcrumb-item"><a href="autoop.core.ml.html">Autoop Machine Learning package</a></li>
           <li class="breadcrumb-item"><a href="autoop.core.ml.model.html">model package</a></li>
@@ -207,8 +206,54 @@ each row is a data point to predict.
 </dd></dl>
 
 </section>
-<section id="random-forest-module">
-<h2>Random forest module<a class="headerlink" href="#random-forest-module" title="Link to this heading"></a></h2>
+<section id="module-autoop.core.ml.model.classification.random_forest">
+<span id="random-forest-module"></span><h2>Random forest module<a class="headerlink" href="#module-autoop.core.ml.model.classification.random_forest" title="Link to this heading"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="autoop.core.ml.model.classification.random_forest.RandomForest">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">autoop.core.ml.model.classification.random_forest.</span></span><span class="sig-name descname"><span class="pre">RandomForest</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">n_estimators</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">100</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_depth</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">random_state</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/autoop/core/ml/model/classification/random_forest.html#RandomForest"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#autoop.core.ml.model.classification.random_forest.RandomForest" title="Link to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="autoop.core.ml.model.html#autoop.core.ml.model.model.Model" title="autoop.core.ml.model.model.Model"><code class="xref py py-class docutils literal notranslate"><span class="pre">Model</span></code></a></p>
+<p>Random Forest model for classification using scikit-learn</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="autoop.core.ml.model.classification.random_forest.RandomForest.fit">
+<span class="sig-name descname"><span class="pre">fit</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">observations</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ground_truth</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/autoop/core/ml/model/classification/random_forest.html#RandomForest.fit"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#autoop.core.ml.model.classification.random_forest.RandomForest.fit" title="Link to this definition"></a></dt>
+<dd><p>Fits the model to the training data
+:type observations: <span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">ndarray</span></code></span>
+:param observations: Training data where
+:type observations: np.ndarray
+:param each row is a data point:
+:type ground_truth: <span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">ndarray</span></code></span>
+:param ground_truth: Target labels for each data
+:type ground_truth: np.ndarray
+:param point in the training set:</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code></span></p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="autoop.core.ml.model.classification.random_forest.RandomForest.predict">
+<span class="sig-name descname"><span class="pre">predict</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">observations</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/autoop/core/ml/model/classification/random_forest.html#RandomForest.predict"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#autoop.core.ml.model.classification.random_forest.RandomForest.predict" title="Link to this definition"></a></dt>
+<dd><p>Predicts labels for each observation in the input
+:type observations: <span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">ndarray</span></code></span>
+:param observations: Input data features for prediction
+:type observations: np.ndarray</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Predicted labels for each input observation</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>np.ndarray</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
 </section>
 <section id="module-autoop.core.ml.model.classification">
 <span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-autoop.core.ml.model.classification" title="Link to this heading"></a></h2>

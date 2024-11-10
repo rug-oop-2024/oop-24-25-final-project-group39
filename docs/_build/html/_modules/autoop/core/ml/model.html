@@ -83,17 +83,11 @@
     <span class="n">KNearestNeighbors</span><span class="p">)</span>
 <span class="kn">from</span> <span class="nn">autoop.core.ml.model.classification.decision_tree</span> <span class="kn">import</span> <span class="p">(</span>
     <span class="n">DecisionTree</span><span class="p">)</span>
-<span class="kn">from</span> <span class="nn">autoop.core.ml.model.classification.logistic_regression</span> <span class="kn">import</span> <span class="p">(</span>
-    <span class="n">LogisticRegressionModel</span><span class="p">)</span>
-<span class="kn">from</span> <span class="nn">autoop.core.ml.model.classification.linearsvc</span> <span class="kn">import</span> <span class="p">(</span>
-    <span class="n">LinearSupportVectorClassifier</span><span class="p">)</span>
 <span class="kn">from</span> <span class="nn">autoop.core.ml.model.classification.random_forest</span> <span class="kn">import</span> <span class="p">(</span>
     <span class="n">RandomForest</span><span class="p">)</span>
 
 
 <span class="n">CLASSIFICATION_MODELS</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;KNearestNeighbors&quot;</span><span class="p">,</span> <span class="s2">&quot;DecisionTree&quot;</span><span class="p">,</span>
-                         <span class="s2">&quot;LogisticRegressionModel&quot;</span><span class="p">,</span>
-                         <span class="s2">&quot;LinearSupportVectorClassifier&quot;</span><span class="p">,</span>
                          <span class="s2">&quot;RandomForest&quot;</span><span class="p">]</span>
 
 <span class="n">REGRESSION_MODELS</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;MultipleLinearRegression&quot;</span><span class="p">,</span>
@@ -129,10 +123,6 @@
                 <span class="k">return</span> <span class="n">KNearestNeighbors</span><span class="p">()</span>
             <span class="k">case</span> <span class="s2">&quot;DecisionTree&quot;</span><span class="p">:</span>
                 <span class="k">return</span> <span class="n">DecisionTree</span><span class="p">()</span>
-            <span class="k">case</span> <span class="s2">&quot;LogisticRegressionModel&quot;</span><span class="p">:</span>
-                <span class="k">return</span> <span class="n">LogisticRegressionModel</span><span class="p">()</span>
-            <span class="k">case</span> <span class="s2">&quot;LinearSupportVectorClassifier&quot;</span><span class="p">:</span>
-                <span class="k">return</span> <span class="n">LinearSupportVectorClassifier</span><span class="p">()</span>
             <span class="k">case</span> <span class="s2">&quot;RandomForest&quot;</span><span class="p">:</span>
                 <span class="k">return</span> <span class="n">RandomForest</span><span class="p">()</span></div>
 

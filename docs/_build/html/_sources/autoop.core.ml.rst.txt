@@ -1,8 +1,8 @@
 Autoop Machine Learning package
-======================
+=================================
 
 Subpackages
------------
+-------------
 
 .. toctree::
    :maxdepth: 4
@@ -10,7 +10,7 @@ Subpackages
    autoop.core.ml.model
 
 Submodules
-----------
+-------------
 
 Artifact module
 ------------------------------
@@ -45,7 +45,7 @@ Metrics
    :show-inheritance:
 
 Pipeline
-------------------------------
+----------
 
 .. automodule:: autoop.core.ml.pipeline
    :members:

@@ -190,34 +190,34 @@ Pipeline(
         Executes the entire pipeline, including preprocessing,
         training, and evaluation
         Returns:
-            dict: A dictionary containing
-            the evaluation metrics and predictions
-            for testing and training sets
+            dict: Dictionary with evaluation metrics and the predictions
         """
         self._preprocess_features()
         self._split_data()
         self._train()
         self._evaluate()
+
         train_x = self._compact_vectors(self._train_X)
         test_x = self._compact_vectors(self._test_X)
+
         train_predictions = self._model.predict(train_x)
         train_metrics_results = []
         for metric in self._metrics:
             train_metrics_results.append((metric,
-                                         metric.evaluate(train_predictions,
-                                                         self._train_y)))
-
+                                          metric.evaluate(train_predictions,
+                                                          self._train_y)))
         test_predictions = self._model.predict(test_x)
         test_metrics_results = []
         for metric in self._metrics:
             test_metrics_results.append((metric,
                                          metric.evaluate(test_predictions,
                                                          self._test_y)))
-
-        return {"train_predictions": train_predictions,
-                "test_predictions": test_predictions,
-                "train_metrics": train_metrics_results,
-                "test_metrics": test_metrics_results}
+        return {
+            "train_predictions": train_predictions,
+            "test_predictions": test_predictions,
+            "train_metrics": train_metrics_results,
+            "test_metrics": test_metrics_results
+        }
 
     def to_artifact(self, name: str, version: str) -> "Artifact":
         """

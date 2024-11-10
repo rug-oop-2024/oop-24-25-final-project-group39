@@ -14,7 +14,7 @@ project = 'OOP final project group 39'
 copyright = '2024, Emily Heugen, Yannick van Maanen'
 authors = 'Emily Heugen (s5587042), Yannick van Maanen (s5579082)'
 
-release = 'v0.1'
+release = 'v1.0'
 
 # -- General configuration ---------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#general-configuration

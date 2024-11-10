@@ -12,17 +12,11 @@ from autoop.core.ml.model.classification.k_nearest_neighbors import (
     KNearestNeighbors)
 from autoop.core.ml.model.classification.decision_tree import (
     DecisionTree)
-from autoop.core.ml.model.classification.logistic_regression import (
-    LogisticRegressionModel)
-from autoop.core.ml.model.classification.linearsvc import (
-    LinearSupportVectorClassifier)
 from autoop.core.ml.model.classification.random_forest import (
     RandomForest)
 
 
 CLASSIFICATION_MODELS = ["KNearestNeighbors", "DecisionTree",
-                         "LogisticRegressionModel",
-                         "LinearSupportVectorClassifier",
                          "RandomForest"]
 
 REGRESSION_MODELS = ["MultipleLinearRegression",
@@ -56,9 +50,5 @@ def get_model(model_name: str) -> Model:
                 return KNearestNeighbors()
             case "DecisionTree":
                 return DecisionTree()
-            case "LogisticRegressionModel":
-                return LogisticRegressionModel()
-            case "LinearSupportVectorClassifier":
-                return LinearSupportVectorClassifier()
             case "RandomForest":
                 return RandomForest()

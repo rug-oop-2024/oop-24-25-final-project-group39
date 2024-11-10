@@ -41,7 +41,7 @@
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../../../../modules.html">autoop</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../autoop.html">autoop</a></li>
 </ul>
 
         </div>
@@ -265,16 +265,33 @@
 <span class="sd">        Executes the entire pipeline, including preprocessing,</span>
 <span class="sd">        training, and evaluation</span>
 <span class="sd">        Returns:</span>
-<span class="sd">            dict: A dictionary containing</span>
-<span class="sd">            the evaluation metrics and predictions</span>
+<span class="sd">            dict: Dictionary with evaluation metrics and the predictions</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_preprocess_features</span><span class="p">()</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_split_data</span><span class="p">()</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_train</span><span class="p">()</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_evaluate</span><span class="p">()</span>
+
+        <span class="n">train_x</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_compact_vectors</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_train_X</span><span class="p">)</span>
+        <span class="n">test_x</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_compact_vectors</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_test_X</span><span class="p">)</span>
+
+        <span class="n">train_predictions</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">train_x</span><span class="p">)</span>
+        <span class="n">train_metrics_results</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">metric</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_metrics</span><span class="p">:</span>
+            <span class="n">train_metrics_results</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">metric</span><span class="p">,</span>
+                                          <span class="n">metric</span><span class="o">.</span><span class="n">evaluate</span><span class="p">(</span><span class="n">train_predictions</span><span class="p">,</span>
+                                                          <span class="bp">self</span><span class="o">.</span><span class="n">_train_y</span><span class="p">)))</span>
+        <span class="n">test_predictions</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">test_x</span><span class="p">)</span>
+        <span class="n">test_metrics_results</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">metric</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_metrics</span><span class="p">:</span>
+            <span class="n">test_metrics_results</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">metric</span><span class="p">,</span>
+                                         <span class="n">metric</span><span class="o">.</span><span class="n">evaluate</span><span class="p">(</span><span class="n">test_predictions</span><span class="p">,</span>
+                                                         <span class="bp">self</span><span class="o">.</span><span class="n">_test_y</span><span class="p">)))</span>
         <span class="k">return</span> <span class="p">{</span>
-            <span class="s2">&quot;metrics&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">_metrics_results</span><span class="p">,</span>
-            <span class="s2">&quot;predictions&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">_predictions</span><span class="p">,</span>
+            <span class="s2">&quot;train_predictions&quot;</span><span class="p">:</span> <span class="n">train_predictions</span><span class="p">,</span>
+            <span class="s2">&quot;test_predictions&quot;</span><span class="p">:</span> <span class="n">test_predictions</span><span class="p">,</span>
+            <span class="s2">&quot;train_metrics&quot;</span><span class="p">:</span> <span class="n">train_metrics_results</span><span class="p">,</span>
+            <span class="s2">&quot;test_metrics&quot;</span><span class="p">:</span> <span class="n">test_metrics_results</span>
         <span class="p">}</span></div>
 
 

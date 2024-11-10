@@ -1,6 +1,3 @@
-autoop package
-==============
-
 autoop
 ======
 

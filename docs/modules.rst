@@ -1,5 +1,5 @@
-autoop
-======
+Automated operation
+========================
 
 .. toctree::
    :maxdepth: 4

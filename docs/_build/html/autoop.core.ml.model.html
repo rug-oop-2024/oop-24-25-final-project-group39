@@ -45,8 +45,7 @@
               <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
 <ul class="current">
 <li class="toctree-l1 current"><a class="reference internal" href="modules.html">autoop</a><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="autoop.html">autoop package</a></li>
-<li class="toctree-l2 current"><a class="reference internal" href="autoop.html#autoop">autoop</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="autoop.html">autoop</a><ul class="current">
 <li class="toctree-l3"><a class="reference internal" href="autoop.functional.html">Functional package</a></li>
 <li class="toctree-l3 current"><a class="reference internal" href="autoop.core.html">The core of autoop</a><ul class="current">
 <li class="toctree-l4 current"><a class="reference internal" href="autoop.core.html#subpackages">Subpackages</a></li>
@@ -63,14 +62,14 @@
 <li class="toctree-l4"><a class="reference internal" href="autoop.core.ml.html#module-autoop.core.ml.dataset">Dataset module</a></li>
 <li class="toctree-l4"><a class="reference internal" href="autoop.core.ml.html#module-autoop.core.ml.feature">Feature module</a></li>
 <li class="toctree-l4"><a class="reference internal" href="autoop.core.ml.html#module-autoop.core.ml.metric">Metrics</a></li>
-<li class="toctree-l4"><a class="reference internal" href="autoop.core.ml.html#pipeline">Pipeline</a></li>
+<li class="toctree-l4"><a class="reference internal" href="autoop.core.ml.html#module-autoop.core.ml.pipeline">Pipeline</a></li>
 <li class="toctree-l4"><a class="reference internal" href="autoop.core.ml.html#module-autoop.core.ml">Module contents</a></li>
 </ul>
 </li>
 <li class="toctree-l3 current"><a class="current reference internal" href="#">model package</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="#subpackages">Subpackages</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#module-autoop.core.ml.model.model">Machine learning basemodel</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#module-contents">Module contents</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#module-autoop.core.ml.model">Module contents</a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="autoop.core.ml.model.classification.html">Classification package</a></li>
@@ -96,7 +95,7 @@
   <ul class="wy-breadcrumbs">
       <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
           <li class="breadcrumb-item"><a href="modules.html">autoop</a></li>
-          <li class="breadcrumb-item"><a href="autoop.html">autoop package</a></li>
+          <li class="breadcrumb-item"><a href="autoop.html">autoop</a></li>
           <li class="breadcrumb-item"><a href="autoop.core.html">The core of autoop</a></li>
           <li class="breadcrumb-item"><a href="autoop.core.ml.html">Autoop Machine Learning package</a></li>
       <li class="breadcrumb-item active">model package</li>
@@ -133,7 +132,14 @@
 </li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="autoop.core.ml.model.classification.html#random-forest-module">Random forest module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="autoop.core.ml.model.classification.html#module-autoop.core.ml.model.classification.random_forest">Random forest module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="autoop.core.ml.model.classification.html#autoop.core.ml.model.classification.random_forest.RandomForest"><code class="docutils literal notranslate"><span class="pre">RandomForest</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="autoop.core.ml.model.classification.html#autoop.core.ml.model.classification.random_forest.RandomForest.fit"><code class="docutils literal notranslate"><span class="pre">RandomForest.fit()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="autoop.core.ml.model.classification.html#autoop.core.ml.model.classification.random_forest.RandomForest.predict"><code class="docutils literal notranslate"><span class="pre">RandomForest.predict()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="autoop.core.ml.model.classification.html#module-autoop.core.ml.model.classification">Module contents</a></li>
 </ul>
 </li>
@@ -238,8 +244,30 @@
 </dd></dl>
 
 </section>
-<section id="module-contents">
-<h2>Module contents<a class="headerlink" href="#module-contents" title="Link to this heading"></a></h2>
+<section id="module-autoop.core.ml.model">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-autoop.core.ml.model" title="Link to this heading"></a></h2>
+<p>This module provides a function to retrieve
+various classification and regression models.</p>
+<dl class="py function">
+<dt class="sig sig-object py" id="autoop.core.ml.model.get_model">
+<span class="sig-prename descclassname"><span class="pre">autoop.core.ml.model.</span></span><span class="sig-name descname"><span class="pre">get_model</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">model_name</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/autoop/core/ml/model.html#get_model"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#autoop.core.ml.model.get_model" title="Link to this definition"></a></dt>
+<dd><p>Factory function to retrieve a model by its name
+:type model_name: <span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></span>
+:param model_name: The name of the model to retrieve
+:type model_name: str</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>A Model that corresponds to the model name provided</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="#autoop.core.ml.model.model.Model" title="autoop.core.ml.model.model.Model">Model</a></p>
+</dd>
+<dt class="field-odd">Raises<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>ValueError</strong> – If the model_name is not in the accepted list of models</p>
+</dd>
+</dl>
+</dd></dl>
+
 </section>
 </section>
 
