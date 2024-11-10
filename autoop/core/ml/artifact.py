@@ -5,10 +5,11 @@ import io
 
 
 class Artifact():
-
     def __init__(self, name: str, asset_path: str,
-                 version: str, data: bytes,
-                 type: str, metadata: Dict[str, str] = {},
+                 data: bytes,
+                 type: str,
+                 version: str = "1_0_0",
+                 metadata: Dict[str, str] = {},
                  tags: List[str] = []) -> None:
         """
         Initialize an Artifact instance with information and metadata
