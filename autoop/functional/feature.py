@@ -1,22 +1,21 @@
-
 from typing import List
 from autoop.core.ml.dataset import Dataset
 from autoop.core.ml.feature import Feature
-import pandas as pd
+
 
 def detect_feature_types(dataset: Dataset) -> List[Feature]:
-    """Assumption: only categorical and numerical features and no NaN values.
+    """Assumption: only categorical and numerical features and no NaN values
     Args:
         dataset: Dataset
     Returns:
-        List[Feature]: List of features with their types.
+        List[Feature]: List of features with their types
     """
-    features = []
-    data = dataset.read()
-    for column in data.columns:
-        if data[column].dtype == 'float64' or \
-           data[column].dtype == 'int64':
-            features.append(Feature(column, 'numerical'))
+    current_data = dataset.read()
+    feature_list = []
+    for column in current_data.columns:
+        if current_data[column].dtype == "float64" or \
+           current_data[column].dtype == "int64":
+            feature_list.append(Feature(column, 'numerical'))
         else:
-            features.append(Feature(column, 'categorical'))
-    raise NotImplementedError("This should be implemented by you.")
+            feature_list.append(Feature(column, 'categorical'))
+    return feature_list
