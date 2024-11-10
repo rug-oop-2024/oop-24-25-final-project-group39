@@ -1,6 +1,6 @@
 from autoop.core.ml.model.model import Model
 
-from autoop.core.ml.model.regression.lassocv import LassoCV
+from autoop.core.ml.model.regression.lasso import Lasso
 from autoop.core.ml.model.regression.multi_linear_regression import (
     MultipleLinearRegression)
 from autoop.core.ml.model.regression.ridge import RidgeModel
@@ -17,7 +17,7 @@ CLASSIFICATION_MODELS = ["KNearestNeighbors", "DecisionTree",
                          "LogisticRegressionModel"]
 
 REGRESSION_MODELS = ["MultipleLinearRegression",
-                     "LassoCV", "RidgeModel"]
+                     "Lasso", "RidgeModel"]
 
 
 def get_model(model_name: str) -> Model:
@@ -38,7 +38,7 @@ def get_model(model_name: str) -> Model:
             case "MultipleLinearRegression":
                 return MultipleLinearRegression()
             case "Lasso":
-                return LassoCV()
+                return Lasso()
             case "RidgeModel":
                 return RidgeModel()
     elif model_name in CLASSIFICATION_MODELS:

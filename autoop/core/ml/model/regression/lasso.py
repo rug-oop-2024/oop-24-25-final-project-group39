@@ -5,17 +5,14 @@ from sklearn.linear_model import Lasso as SklearnLasso
 
 
 class Lasso(Model):
+    """Lasso regression model for regression tasks using scikit-learn"""
     def __init__(self, alpha: float = 1.0) -> None:
         """
         Initializes the lasso model
         Returns:
             None
         """
-        super().__init__(type="regression")
-        self.hyperparameters = {"alpha": alpha}
-        self._parameters = {
-            "coefficients": self.lasso.coef_,
-            "intercept": self.lasso.intercept_}
+        super().__init__(type="regression", parameters={"alpha": alpha})
         self.model = SklearnLasso(alpha)
 
     def fit(self, X: np.ndarray, Y: np.ndarray) -> None:
@@ -26,6 +23,9 @@ class Lasso(Model):
         corresponding to each observation
         """
         self.model.fit(X, Y)
+        self.parameters = {"coefficients": self.model.coef_,
+                           "intercept": self.model.intercept_,
+                           "alpha": self.model.alpha}
 
     def predict(self, X: np.ndarray) -> np.ndarray:
         """

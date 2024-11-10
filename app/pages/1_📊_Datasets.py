@@ -29,9 +29,11 @@ if dataset_artifact == "Upload Dataset":
         if st.button(f"Save dataset '{new_dataset.name}'"):
             saved_dataset = Dataset.from_dataframe(data=df,
                                                    name=new_dataset.name,
-                                                   asset_path=new_dataset.name)
+                                                   asset_path=f"dataset/"
+                                                   f"{new_dataset.name}")
             automl.registry.register(saved_dataset)
             st.write(f"Succesfully saved dataset '{new_dataset.name}'")
+            st.rerun()
 else:
     dataset_class = Dataset(name=dataset_artifact.name,
                             data=dataset_artifact.data,
@@ -42,6 +44,7 @@ else:
         automl.registry.delete(dataset_class.id)
         st.write(f"Succesfully removed dataset '{dataset_class}'")
         st.write(f"Datasets remaining: {datasets}")
+
 
 st.subheader("Currently saved datasets:")
 if len(datasets) == 0:
