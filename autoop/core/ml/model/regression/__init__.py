@@ -1,2 +1,5 @@
-
-from autoop.core.ml.model.regression.multiple_linear_regression import MultipleLinearRegression
+"""
+This module contains various machine learning models.
+It includes functionality for defining, training,
+and evaluating models for regression.
+"""
