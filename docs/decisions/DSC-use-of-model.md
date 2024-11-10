@@ -2,7 +2,7 @@
 # Date: 3-11-2024
 # Decision: Implementation of KNN model for classification
 # Status: Accepted
-# Motivation: KNN can classify data itno groups with complex, non-linear boundaries
+# Motivation: KNN can classify data into groups with complex, non-linear boundaries
 # Reason: It classifies instances by identifying the most common class among nearby data points
 # Limitations: Memory intensive and can be slow on large data sets
 # Alternatives: Decision Trees

@@ -8,15 +8,22 @@ METRICS = [
     "mean_squared_error",
     "root_mean_squared_error",
     "r_squared",
+    "mean_absolute_percentage_error",
     "accuracy",
+    "micro_average_precision",
     "macro_average_precision",
+    "micro_average_recall",
     "macro_average_recall"
 ]
 
 
 def get_metric(name: str) -> Union["MeanAbsoluteError", "MeanSquaredError",
-                                   "RootMeanSquaredError", "RSquared",
-                                   "Accuracy", "MacroAveragePrecision",
+                                   "RootMeanSquaredError",
+                                   "MeanAbsolutePercentageError",
+                                   "RSquared", "Accuracy",
+                                   "MicroAveragePrecision",
+                                   "MacroAveragePrecision",
+                                   "MicroAverageRecall",
                                    "MacroAverageRecall"]:
     """
     Factory function to retrieve a metric by its name
@@ -38,12 +45,18 @@ def get_metric(name: str) -> Union["MeanAbsoluteError", "MeanSquaredError",
             return MeanSquaredError()
         case "root_mean_squared_error":
             return RootMeanSquaredError()
+        case "mean_absolute_percentage_error":
+            return MeanAbsolutePercentageError()
         case "r_squared":
             return RSquared()
         case "accuracy":
             return Accuracy()
+        case "micro_average_precision":
+            return MicroAveragePrecision()
         case "macro_average_precision":
             return MacroAveragePrecision()
+        case "micro_average_recall":
+            return MicroAverageRecall()
         case "macro_average_recall":
             return MacroAverageRecall()
 
@@ -115,6 +128,22 @@ class RootMeanSquaredError(Metric):
         return sqrt(np.mean((y_true - y_pred) ** 2))
 
 
+class MeanAbsolutePercentageError(Metric):
+    """Computes the Mean Absolute Percentage Error"""
+    def evaluate(self, y_true: np.ndarray, y_pred: np.ndarray) -> float:
+        """
+        Computes the Mean Absolute Percentage Error (MAPE)
+        Args:
+            y_true (np.ndarray): The ground truth values
+            y_pred (np.ndarray): The predicted values
+        Returns:
+            float: The computed metric score
+        """
+        small_num = 1e-10  # Small value to avoid division by zero
+        percentage_error = np.abs((y_true - y_pred) / (y_true + small_num))
+        return np.mean(percentage_error) * 100
+
+
 class RSquared(Metric):
     """Computes the R-squared"""
     def evaluate(self, y_true: np.ndarray, y_pred: np.ndarray) -> float:
@@ -148,6 +177,32 @@ class Accuracy(Metric):
         return np.mean(y_true == y_pred)
 
 
+class MicroAveragePrecision(Metric):
+    """Computes the micro-average precision score"""
+    def evaluate(self, y_true: np.ndarray, y_pred: np.ndarray) -> float:
+        """
+        Computes the micro-average precision score
+        Args:
+            y_true (np.ndarray): The ground truth values
+            y_pred (np.ndarray): The predicted values
+        Returns:
+            float: The computed metric score
+        """
+        true_positive = 0
+        false_positive = 0
+        different_labels = np.unique(y_true)
+
+        for label in different_labels:
+            true_positive += np.sum((y_true == label) & (y_pred == label))
+            false_positive += np.sum((y_true != label) & (y_pred == label))
+
+        if true_positive + false_positive == 0:
+            return 0.0
+        else:
+            micro_precision = true_positive / (true_positive + false_positive)
+            return micro_precision
+
+
 class MacroAveragePrecision(Metric):
     """Computes the macro-average precision score"""
     def evaluate(self, y_true: np.ndarray, y_pred: np.ndarray) -> float:
@@ -161,15 +216,43 @@ class MacroAveragePrecision(Metric):
         """
         different_labels = np.unique(y_true)
         precision_per_class = []
+
         for label in different_labels:
             true_positive = np.sum((y_true == label) & (y_pred == label))
             false_positive = np.sum((y_true != label) & (y_pred == label))
+
             if true_positive + false_positive == 0:
                 precision = 0
             else:
                 precision = true_positive / (true_positive + false_positive)
             precision_per_class.append(precision)
         return np.mean(precision_per_class)
+
+
+class MicroAverageRecall(Metric):
+    """Computes the micro-average recall score"""
+    def evaluate(self, y_true: np.ndarray, y_pred: np.ndarray) -> float:
+        """
+        Computes the micro-average recall score
+        Args:
+            y_true (np.ndarray): The ground truth values
+            y_pred (np.ndarray): The predicted values
+        Returns:
+            float: The computed metric score
+        """
+        true_positive = 0
+        false_negative = 0
+        different_labels = np.unique(y_true)
+
+        for label in different_labels:
+            true_positive += np.sum((y_true == label) & (y_pred == label))
+            false_negative += np.sum((y_true == label) & (y_pred != label))
+
+        if true_positive + false_negative == 0:
+            return 0.0
+        else:
+            micro_recall = true_positive / (true_positive + false_negative)
+            return micro_recall
 
 
 class MacroAverageRecall(Metric):
@@ -185,9 +268,11 @@ class MacroAverageRecall(Metric):
         """
         different_labels = np.unique(y_true)
         recall_per_class = []
+
         for label in different_labels:
             true_positive = np.sum((y_true == label) & (y_pred == label))
             false_negative = np.sum((y_true == label) & (y_pred != label))
+
             if true_positive + false_negative == 0:
                 precision = 0
             else:

@@ -22,6 +22,9 @@ Make the start of html file
 - 9-11-2024
 Made the DSC report in the folder.
 Made the reports for all the metrics.
+Made the reports for all the models.
 Made the report for the flake8 design choice.
 Fixed regression models.
 Fixed classification models except logistic.
+Added two new classification models.
+- 10-1

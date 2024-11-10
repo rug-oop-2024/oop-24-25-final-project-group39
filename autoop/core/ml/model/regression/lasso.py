@@ -23,9 +23,9 @@ class Lasso(Model):
         corresponding to each observation
         """
         self.model.fit(X, Y)
-        self._parameters = {"coefficients": self.model.coef_,
-                            "intercept": self.model.intercept_,
-                            "alpha": self.model.alpha}
+        self.parameters = {"coefficients": self.model.coef_,
+                           "intercept": self.model.intercept_,
+                           "alpha": self.model.alpha}
 
     def predict(self, X: np.ndarray) -> np.ndarray:
         """

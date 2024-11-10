@@ -106,6 +106,7 @@ def choose_model(input_features: List[str], target_feature: str) -> str:
         else:
             chosen_model = st.selectbox("Choose a regression model",
                                         REGRESSION_MODELS)
+            st.write(chosen_model)
         return chosen_model
 
 
@@ -134,9 +135,9 @@ def choose_metrics(chosen_model: str) -> List[str]:
     if chosen_model is None:
         st.write("First choose a model")
     elif chosen_model in CLASSIFICATION_MODELS:
-        metrics = st.multiselect("Select Classification Metrics", METRICS[4:])
+        metrics = st.multiselect("Select Classification Metrics", METRICS[5:])
     elif chosen_model in REGRESSION_MODELS:
-        metrics = st.multiselect("Select Regression Metrics", METRICS[:4])
+        metrics = st.multiselect("Select Regression Metrics", METRICS[:5])
     return metrics
 
 
@@ -174,12 +175,12 @@ def show_summary(pipeline: Pipeline) -> None:
     col1.write("Data Split")
     col1.write("Metrics")
     col2.write(pipeline._dataset.name)
-    col2.write(', '.join([pipeline.name for
-                          pipeline in pipeline._input_features]))
+    col2.write(', '.join([feature.name for
+                          feature in pipeline._input_features]))
     col2.write(pipeline._target_feature.name)
     col2.write(pipeline.model.__class__.__name__)
-    col2.write(f"Train: {pipeline._split * 100}% // Test: ",
-               f"{(1 - pipeline._split) * 100}%")
+    col2.write(f"Train: {pipeline._split*100:.1f}% // Test: "
+               f"{(1 - pipeline._split) * 100:.1f}%")
     col2.write(', '.join([metric.__class__.__name__
                           for metric in pipeline._metrics]))
 
@@ -194,7 +195,7 @@ def show_results(pipeline: Pipeline, chosen_metrics: List[str]) -> None:
         None
     """
     if st.button("Compute results"):
-        pipeline.execute()
+        results = pipeline.execute()
         st.write("#### Metrics:")
         calculating = st.caption("Calculating...")
         progress_bar = st.progress(0)
@@ -207,6 +208,9 @@ def show_results(pipeline: Pipeline, chosen_metrics: List[str]) -> None:
         for i in range(len(chosen_metrics)):
             st.write(f"{chosen_metrics[i]}: \
                      {pipeline._metrics_results[i][1]:.2f}")
+        with st.expander("", expanded=True):
+            st.write("### Predictions:")
+            st.write(results['predictions'])
 
 
 def save_pipeline(automl: AutoMLSystem, pipeline: Pipeline) -> None:

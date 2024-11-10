@@ -44,6 +44,7 @@ class Pipeline():
         self._metrics = metrics
         self._artifacts = {}
         self._split = split
+
         if target_feature.type == "categorical" and \
                 model.type != "classification":
             raise ValueError(
@@ -201,14 +202,17 @@ Pipeline(
             "predictions": self._predictions,
         }
 
-    def to_artifact(self, name: str) -> "Artifact":
+    def to_artifact(self, name: str, version: str) -> "Artifact":
         """
         Serializes the model or object and converts it into an Artifact
         Args:
             name (str): The name to assign to the artifact
+            version (str): The version identifier for the artifact
         Returns:
             Artifact: An Artifact object containing the serialized model/data
         """
         data = pickle.dumps(self)
         return Artifact(name=name, data=data,
-                        asset_path=f"pipeline/{name}", type="pipieline")
+                        asset_path=f"pipeline/{name}",
+                        type="pipeline",
+                        version=version)
