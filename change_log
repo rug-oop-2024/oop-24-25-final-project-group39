@@ -48,3 +48,13 @@ model __init__.py - Fixed if-statement and switched classification / regression
 3_Deployment.py - Divided into deployment_handling.py
 modelling_handling.py - Partly from 2_Modelling.py
 deployment_handling.py - Partly from 3_Deployment.py
+
+10-11 2:35:
+pipeline.py - Corrected the to_artifact method
+artifact.py - Version default value added
+lasso.py - changed model_type to type in super init
+multi_linear_regression.py - changed model_type to type in super init
+ridge.py - changed model_type to type in super init
+1_Datasets.py - Small improvements
+2_Modelling.py - Bugfixes
+modelling_handling.py - Bugfixes
