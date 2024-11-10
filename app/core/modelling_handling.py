@@ -3,14 +3,27 @@ import streamlit as st
 import pandas as pd
 from typing import List
 import time
+import numpy as np
 
 from autoop.core.ml.dataset import Dataset
 from autoop.core.ml.model import (REGRESSION_MODELS,
                                   CLASSIFICATION_MODELS)
 from autoop.core.ml.metric import METRICS, get_metric, Metric
+from autoop.core.ml.pipeline import Pipeline
+from app.core.system import AutoMLSystem
+
+automl = AutoMLSystem.get_instance()
 
 
-def choose_dataset(datasets) -> "Dataset":
+def choose_dataset(datasets: List[Dataset]) -> "Dataset":
+    """
+    Allows the user to select a dataset from available datasets
+    and displays a preview
+    Args:
+        datasets (List[Dataset]): A list of available datasets
+    Returns:
+        Dataset: The selected dataset object
+    """
     if len(datasets) == 0:
         st.write("There are no saved datasets. \
                  Please go to the Datasets page to save datasets.")
@@ -22,30 +35,65 @@ def choose_dataset(datasets) -> "Dataset":
         return chosen_dataset
 
 
-def select_input_features(data, feature_list) -> List[str]:
+def select_input_features(data: Dataset, feature_list: List[str]) -> List[str]:
+    """
+    Allows the user to select input features from the available feature list
+    Args:
+        data (Dataset): The dataset object containing the available features
+        feature_list (List[str]): A list of feature names in the dataset
+    Returns:
+        List[str]: A list of selected input features
+    """
     if data is None:
         st.write("Please select a dataset first.")
     else:
         return st.multiselect("Select input features", feature_list)
 
 
-def select_target_feature(input_features, feature_list) -> str:
+def select_target_feature(input_features: List[str],
+                          feature_list: List[str]) -> str:
+    """
+    Allows the user to select the target feature from
+    the available input features
+    Args:
+        input_features (List[str]): A list of selected input features
+        feature_list (List[str]): A list of feature names in the dataset
+    Returns:
+        str: The selected target feature
+    """
     if input_features is None:
         st.write("First select input features")
     else:
         return st.selectbox("Select target feature", feature_list)
 
 
-def show_features(input_features, target_feature) -> None:
+def show_features(input_features: List[str], target_feature: str) -> None:
+    """
+    Displays the selected input features and the target feature
+    Args:
+        input_features (List[str]): A list of selected input features
+        target_feature (str): The selected target feature
+    Returns:
+        None
+    """
     input_feature_names = [feature.name for feature in input_features]
-    st.write("Input features: " +
-             ', '.join([feature.name for feature in input_features])
+    st.write("Input features: " + ', '.join([feature.name
+                                             for feature in input_features])
              if input_feature_names != [] else "No input features selected")
     st.write("Target feature: " + target_feature.name if target_feature is not
              None else "No target feature selected")
 
 
-def choose_model(input_features, target_feature) -> str:
+def choose_model(input_features: List[str], target_feature: str) -> str:
+    """
+    Allows the user to choose a regression or classification model
+    based on the selected features
+    Args:
+        input_features (List[str]): A list of selected input features
+        target_feature (str): The selected target feature
+    Returns:
+        str: The name of the chosen model
+    """
     if input_features is None or input_features == []:
         st.write("First select input features")
     elif target_feature is None:
@@ -59,11 +107,15 @@ def choose_model(input_features, target_feature) -> str:
         else:
             chosen_model = st.selectbox("Choose a regression model",
                                         REGRESSION_MODELS)
-            st.write(chosen_model)
         return chosen_model
 
 
 def choose_train_split() -> float:
+    """
+    Allows the user to select the training data split percentage
+    Returns:
+        float: The percentage of data to be used for training
+    """
     train_split = st.slider("Training data percentage", 50, 99, 75)
     st.write("##### Updated Data Splits:")
     st.write(f"Train Split: {train_split}%")
@@ -71,7 +123,14 @@ def choose_train_split() -> float:
     return train_split
 
 
-def choose_metrics(chosen_model) -> List[str]:
+def choose_metrics(chosen_model: str) -> List[str]:
+    """
+    Allows the user to select metrics for evaluating the model
+    Args:
+        chosen_model (str): The model for which metrics are to be chosen
+    Returns:
+        List[str]: A list of selected metrics
+    """
     metrics = []
     if chosen_model is None:
         st.write("First choose a model")
@@ -83,15 +142,30 @@ def choose_metrics(chosen_model) -> List[str]:
 
 
 def metric_to_classes(chosen_metrics: List[str]) -> List["Metric"]:
+    """
+    Converts the selected metric names into Metric class objects
+    Args:
+        chosen_metrics (List[str]): A list of selected metric names
+    Returns:
+        List[Metric]: A list of corresponding Metric objects
+    """
     metric_models = []
     if chosen_metrics != []:
         for i in range(len(chosen_metrics)):
             metric_models.append(get_metric(chosen_metrics[i]))
-            st.write(chosen_metrics[i])
     return metric_models
 
 
-def show_summary(pipeline) -> None:
+def show_summary(pipeline: Pipeline) -> None:
+    """
+    Displays a summary of the selected dataset, features, model,
+    data split, and metrics
+    Args:
+         pipeline (Pipeline): The pipeline object containing
+         the selected configurations
+    Returns:
+        None
+    """
     col1, col2 = st.columns([2, 7])
     col1.write("Dataset")
     col1.write("Input Features")
@@ -110,7 +184,15 @@ def show_summary(pipeline) -> None:
                           for metric in pipeline._metrics]))
 
 
-def show_results(pipeline, chosen_metrics) -> None:
+def show_results(pipeline: Pipeline, chosen_metrics: List[str]) -> None:
+    """
+    Displays the results of the selected metrics
+    Args:
+        pipeline (Pipeline): The pipeline object to execute
+        chosen_metrics (List[str]): A list of selected metrics for evaluation
+    Returns:
+        None
+    """
     if st.button("Compute results"):
         results = pipeline.execute()
         st.write("#### Metrics:")
@@ -125,12 +207,24 @@ def show_results(pipeline, chosen_metrics) -> None:
         for i in range(len(chosen_metrics)):
             st.write(f"{chosen_metrics[i]}: \
                      {pipeline._metrics_results[i][1]:.2f}")
-        with st.expander("", expanded=True):
-            st.write("### Predictions:")
-            st.write(results['predictions'])
+
+        predictions = np.ravel(results["test_predictions"])
+        actual_values = np.ravel(pipeline._test_y)
+
+        st.subheader("Predictions")
+        st.dataframe(pd.DataFrame({"Predictions": predictions,
+                                   "Actual": actual_values}))
 
 
-def save_pipeline(automl, pipeline) -> None:
+def save_pipeline(automl: AutoMLSystem, pipeline: Pipeline) -> None:
+    """
+    Saves the pipeline with a name and version
+    Args:
+        automl (AutoMLSystem): The AutoML system instance
+        pipeline (Pipeline): The pipeline object to be saved
+    Returns:
+        None
+    """
     st.header("Save Pipeline")
     name_pipeline = st.text_input("Enter a name for this pipeline")
     version = st.text_input("Enter a version for this pipeline")

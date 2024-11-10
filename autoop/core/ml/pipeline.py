@@ -11,7 +11,8 @@ import numpy as np
 
 
 class Pipeline():
-
+    """Machine learning pipeline for data processing,
+    training, and evaluation"""
     def __init__(self,
                  metrics: List[Metric],
                  dataset: Dataset,
@@ -45,10 +46,11 @@ class Pipeline():
         self._split = split
 
         if target_feature.type == "categorical" and \
-           model.type != "classification":
+                model.type != "classification":
             raise ValueError(
-             "Model type must be classification for "
-             "categorical target feature")
+                "Model type must be classification for "
+                "categorical target feature"
+            )
         if target_feature.type == "continuous" and model.type != "regression":
             raise ValueError(
                 "Model type must be regression for continuous target feature")
@@ -143,14 +145,13 @@ Pipeline(
             None
         """
         split = self._split
-        self._train_X = [vector[:int(split * len(vector))] for
-                         vector in self._input_vectors]
-        self._test_X = [vector[int(split * len(vector)):] for
-                        vector in self._input_vectors]
-        self._train_y = self._output_vector[:int(split *
-                                                 len(self._output_vector))]
-        self._test_y = self._output_vector[int(split *
-                                               len(self._output_vector)):]
+        self._train_X = [vector[:int(split * len(vector))]
+                         for vector in self._input_vectors]
+        self._test_X = [vector[int(split * len(vector)):]
+                        for vector in self._input_vectors]
+        split_len = int(split * len(self._output_vector))
+        self._train_y = self._output_vector[:split_len]
+        self._test_y = self._output_vector[split_len:]
 
     def _compact_vectors(self, vectors: List[np.array]) -> np.array:
         """
@@ -196,12 +197,33 @@ Pipeline(
         self._split_data()
         self._train()
         self._evaluate()
-        return {
-            "metrics": self._metrics_results,
-            "predictions": self._predictions,
-        }
+
+        train_x = self._compact_vectors(self._train_X)
+        test_x = self._compact_vectors(self._test_X)
+        train_predictions = self._model.predict(train_x)
+        train_metrics_results = [(metric, metric.evaluate(
+            train_predictions, self._train_y)) for metric in self._metrics]
+        test_predictions = self._model.predict(test_x)
+        test_metrics_results = []
+        for metric in self._metrics:
+            test_metrics_results.append((metric,
+                                         metric.evaluate(test_predictions,
+                                                         self._test_y)))
+
+        return {"train_predictions": train_predictions,
+                "test_predictions": test_predictions,
+                "train_metrics": train_metrics_results,
+                "test_metrics": test_metrics_results}
 
     def to_artifact(self, name: str, version: str) -> "Artifact":
+        """
+        Serializes the model or object and converts it into an Artifact
+        Args:
+            name (str): The name to assign to the artifact
+            version (str): The version identifier for the artifact
+        Returns:
+            Artifact: An Artifact object containing the serialized model/data
+        """
         data = pickle.dumps(self)
         return Artifact(name=name, data=data,
                         asset_path=f"pipeline/{name}",

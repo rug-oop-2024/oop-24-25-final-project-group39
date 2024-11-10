@@ -11,7 +11,14 @@ from autoop.core.ml.dataset import Dataset
 st.set_page_config(page_title="Modelling", page_icon="📈")
 
 
-def write_helper_text(text: str):
+def write_helper_text(text: str) -> None:
+    """
+    Writes helper text in a Streamlit app with custom styling
+    Args:
+        text (str): The helper text to be displayed
+    Returns:
+        None
+    """
     st.write(f"<p style=\"color: #888;\">{text}</p>", unsafe_allow_html=True)
 
 
@@ -25,11 +32,14 @@ datasets = automl.registry.list(type="dataset")
 
 
 def check_inputs() -> bool:
-    if dataset is None or input_features == [] \
-     or target_feature is None or model is None or chosen_metrics == []:
+    """
+    Checks if all necessary inputs for the pipeline are provided
+    Returns:
+        bool: True if all inputs are provided, otherwise False.
+    """
+    if dataset is None or input_features == [] or target_feature is None \
+            or model is None or chosen_metrics == []:
         st.write("First finish the pipeline inputs")
-        st.write(dataset)
-        st.write(model)
         return False
     else:
         return True
@@ -45,8 +55,11 @@ chosen_model = None
 st.header("Step 1. Choose Dataset")
 dataset_artifact = mh.choose_dataset(datasets)
 dataset = Dataset(name=dataset_artifact.name,
-                  data=dataset_artifact.data,
-                  asset_path=dataset_artifact.asset_path)
+                  version=dataset_artifact.version,
+                  asset_path=dataset_artifact.asset_path,
+                  tags=dataset_artifact.tags,
+                  metadata=dataset_artifact.metadata,
+                  data=dataset_artifact.data)
 
 st.header("Step 2. Select Features")
 if dataset is not None:
