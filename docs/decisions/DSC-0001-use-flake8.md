@@ -4,5 +4,5 @@
 # Status: Accepted
 # Motivation: Improves code readability and maintains a consistent style for coding
 # Reason: Flake8 enforces PEP 8 for Python
-# Limitations: 
+# Limitations: -
 # Alternatives: Manual code reviews

@@ -12,7 +12,7 @@
 # Decision: Implementation of Root Mean Squared Error metric in metric.py
 # Status: Accepted
 # Motivation: Model error units can differ from the data
-# Reason: The Root Mean Squared error expresses error in the same units as the data
+# Reason: The Root Mean Squared error expresses an error in the same units as the data
 # Limitations: Sensitive to outliers and higher error values
 # Alternatives: Mean Squared Error or Mean Absolute Error
 
@@ -22,7 +22,7 @@
 # Status: Accepted
 # Motivation: Evaluating a model's performance with statistical measures of fit
 # Reason: R-squared provides the proportion of variance in the target variable
-# Limitations: Lmited interpretability in non-linear models
+# Limitations: Limited interpretability in non-linear models
 # Alternatives: Adjusted R-squared or other fit-based metrics
 
 # DSC-0007: Macro-Average Precision
@@ -38,7 +38,7 @@
 # Date: 4-11-2024 
 # Decision: Implementation of Macro-Average Recall metric in metric.py
 # Status: Accepted
-# Motivation: In multi-class classification, recall assesment is necessary
+# Motivation: In multi-class classification, recall assessment is necessary
 # Reason: Computes the mean recall for each class
 # Limitations: May not reflect true performance in imbalanced datasets
 # Alternatives: Micro-average recall or weighted-average recall
@@ -47,8 +47,8 @@
 # Date: 10-11-2024
 # Decision: Implementation of Micro-Average Precision metric in metric.py
 # Status: Accepted
-# Motivation: In multi-class classification it measures precision for every class
-# Reason: The metric aggregates the true positivies and false positives across classes
+# Motivation: In multi-class classification, it measures precision for every class
+# Reason: The metric aggregates the true positives and false positives across classes
 # Limitations: Can underrepresent minority class performances
 # Alternatives: Macro-average precision
 
@@ -57,7 +57,7 @@
 # Decision: Implementation of Micro-Average Recall metric in metric.py
 # Status: Accepted
 # Motivation: Provides a metric to assess overall recall in multi-class classification
-# Reason: Micro-Average Recall aggregates true positives and false negatives across classes
+# Reason: Micro-average recall aggregates true positives and false negatives across classes
 # Limitations: May not provide insights for each class individually,
 # Alternatives: Macro-average recall
 
