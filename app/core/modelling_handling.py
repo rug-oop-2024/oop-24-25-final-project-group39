@@ -75,9 +75,9 @@ def choose_metrics(chosen_model) -> List[str]:
     if chosen_model is None:
         st.write("First choose a model")
     elif chosen_model in CLASSIFICATION_MODELS:
-        metrics = st.multiselect("Select Classification Metrics", METRICS[4:])
+        metrics = st.multiselect("Select Classification Metrics", METRICS[5:])
     elif chosen_model in REGRESSION_MODELS:
-        metrics = st.multiselect("Select Regression Metrics", METRICS[:4])
+        metrics = st.multiselect("Select Regression Metrics", METRICS[:5])
     return metrics
 
 
