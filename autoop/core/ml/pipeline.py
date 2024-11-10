@@ -43,6 +43,7 @@ class Pipeline():
         self._metrics = metrics
         self._artifacts = {}
         self._split = split
+
         if target_feature.type == "categorical" and \
            model.type != "classification":
             raise ValueError(
@@ -199,3 +200,10 @@ Pipeline(
             "metrics": self._metrics_results,
             "predictions": self._predictions,
         }
+
+    def to_artifact(self, name: str, version: str) -> "Artifact":
+        data = pickle.dumps(self)
+        return Artifact(name=name, data=data,
+                        asset_path=f"pipeline/{name}",
+                        type="pipeline",
+                        version=version)
