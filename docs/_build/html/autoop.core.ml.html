@@ -6,14 +6,14 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Autoop Machine Learning package &mdash; OOP final project group 39 v0.1 documentation</title>
+  <title>Autoop Machine Learning package &mdash; OOP final project group 39 v1.0 documentation</title>
       <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=80d5e7a1" />
       <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
 
   
       <script src="_static/jquery.js?v=5d32c60e"></script>
       <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-      <script src="_static/documentation_options.js?v=34cd777e"></script>
+      <script src="_static/documentation_options.js?v=e160b93e"></script>
       <script src="_static/doctools.js?v=9bcbadda"></script>
       <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="_static/js/theme.js"></script>
@@ -44,62 +44,33 @@
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
 <ul class="current">
-<li class="toctree-l1 current"><a class="reference internal" href="autoop.html">autoop</a><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="autoop.functional.html">Functional package</a></li>
-<li class="toctree-l2 current"><a class="reference internal" href="autoop.core.html">The core of autoop</a><ul class="current">
-<li class="toctree-l3 current"><a class="reference internal" href="autoop.core.html#subpackages">Subpackages</a><ul class="current">
-<li class="toctree-l4 current"><a class="current reference internal" href="#">Autoop Machine Learning package</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="modules.html">Automated operation</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="autoop.html">autoop</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="autoop.functional.html">Functional package</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="autoop.core.html">The core of autoop</a><ul class="current">
+<li class="toctree-l4 current"><a class="reference internal" href="autoop.core.html#subpackages">Subpackages</a></li>
+<li class="toctree-l4"><a class="reference internal" href="autoop.core.html#submodules">Submodules</a></li>
+<li class="toctree-l4"><a class="reference internal" href="autoop.core.html#module-autoop.core.database">Database module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="autoop.core.html#module-autoop.core.storage">Storage module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="autoop.core.html#module-autoop.core">Module contents</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="autoop.core.html#submodules">Submodules</a></li>
-<li class="toctree-l3"><a class="reference internal" href="autoop.core.html#module-autoop.core.database">Database module</a></li>
-<li class="toctree-l3"><a class="reference internal" href="autoop.core.html#module-autoop.core.storage">Storage module</a></li>
-<li class="toctree-l3"><a class="reference internal" href="autoop.core.html#module-autoop.core">Module contents</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Autoop Machine Learning package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#subpackages">Subpackages</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#submodules">Submodules</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#module-autoop.core.ml.artifact">Artifact module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#module-autoop.core.ml.dataset">Dataset module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#module-autoop.core.ml.feature">Feature module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#module-autoop.core.ml.metric">Metrics</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#module-autoop.core.ml.pipeline">Pipeline</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#module-autoop.core.ml">Module contents</a></li>
 </ul>
 </li>
-<li class="toctree-l2 current"><a class="current reference internal" href="#">Autoop Machine Learning package</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#subpackages">Subpackages</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="autoop.core.ml.model.html">model package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="autoop.core.ml.model.html">model package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="autoop.core.ml.model.classification.html">Classification package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="autoop.core.ml.model.regression.html">Regression package</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="#submodules">Submodules</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#module-autoop.core.ml.artifact">Artifact module</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#autoop.core.ml.artifact.Artifact"><code class="docutils literal notranslate"><span class="pre">Artifact</span></code></a></li>
-</ul>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="#module-autoop.core.ml.dataset">Dataset module</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#autoop.core.ml.dataset.Dataset"><code class="docutils literal notranslate"><span class="pre">Dataset</span></code></a></li>
-</ul>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="#module-autoop.core.ml.feature">Feature module</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#autoop.core.ml.feature.Feature"><code class="docutils literal notranslate"><span class="pre">Feature</span></code></a></li>
-</ul>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="#module-autoop.core.ml.metric">Metrics</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#autoop.core.ml.metric.Accuracy"><code class="docutils literal notranslate"><span class="pre">Accuracy</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#autoop.core.ml.metric.MacroAveragePrecision"><code class="docutils literal notranslate"><span class="pre">MacroAveragePrecision</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#autoop.core.ml.metric.MacroAverageRecall"><code class="docutils literal notranslate"><span class="pre">MacroAverageRecall</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#autoop.core.ml.metric.MeanAbsoluteError"><code class="docutils literal notranslate"><span class="pre">MeanAbsoluteError</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#autoop.core.ml.metric.MeanAbsolutePercentageError"><code class="docutils literal notranslate"><span class="pre">MeanAbsolutePercentageError</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#autoop.core.ml.metric.MeanSquaredError"><code class="docutils literal notranslate"><span class="pre">MeanSquaredError</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#autoop.core.ml.metric.Metric"><code class="docutils literal notranslate"><span class="pre">Metric</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#autoop.core.ml.metric.MicroAveragePrecision"><code class="docutils literal notranslate"><span class="pre">MicroAveragePrecision</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#autoop.core.ml.metric.MicroAverageRecall"><code class="docutils literal notranslate"><span class="pre">MicroAverageRecall</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#autoop.core.ml.metric.RSquared"><code class="docutils literal notranslate"><span class="pre">RSquared</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#autoop.core.ml.metric.RootMeanSquaredError"><code class="docutils literal notranslate"><span class="pre">RootMeanSquaredError</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#autoop.core.ml.metric.get_metric"><code class="docutils literal notranslate"><span class="pre">get_metric()</span></code></a></li>
-</ul>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="#module-autoop.core.ml.pipeline">Pipeline</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#autoop.core.ml.pipeline.Pipeline"><code class="docutils literal notranslate"><span class="pre">Pipeline</span></code></a></li>
-</ul>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="#module-autoop.core.ml">Module contents</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="autoop.core.ml.model.html">model package</a></li>
-<li class="toctree-l2"><a class="reference internal" href="autoop.core.ml.model.classification.html">Classification package</a></li>
-<li class="toctree-l2"><a class="reference internal" href="autoop.core.ml.model.regression.html">Regression package</a></li>
 </ul>
 </li>
 </ul>
@@ -118,7 +89,7 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
-          <li class="breadcrumb-item"><a href="modules.html">&lt;no title&gt;</a></li>
+          <li class="breadcrumb-item"><a href="modules.html">Automated operation</a></li>
           <li class="breadcrumb-item"><a href="autoop.html">autoop</a></li>
           <li class="breadcrumb-item"><a href="autoop.core.html">The core of autoop</a></li>
       <li class="breadcrumb-item active">Autoop Machine Learning package</li>
@@ -149,7 +120,7 @@
 </li>
 <li class="toctree-l3"><a class="reference internal" href="autoop.core.ml.model.regression.html">Regression package</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="autoop.core.ml.model.regression.html#regression-modules">Regression modules</a></li>
-<li class="toctree-l4"><a class="reference internal" href="autoop.core.ml.model.regression.html#module-autoop.core.ml.model.regression.lasso">Lasso module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="autoop.core.ml.model.regression.html#module-autoop.core.ml.model.regression.lassocv">Lassocv module</a></li>
 <li class="toctree-l4"><a class="reference internal" href="autoop.core.ml.model.regression.html#module-autoop.core.ml.model.regression.multi_linear_regression">Multi_linear_regression module</a></li>
 <li class="toctree-l4"><a class="reference internal" href="autoop.core.ml.model.regression.html#module-autoop.core.ml.model.regression.ridge">Ridge module</a></li>
 <li class="toctree-l4"><a class="reference internal" href="autoop.core.ml.model.regression.html#module-autoop.core.ml.model.regression">Module contents</a></li>

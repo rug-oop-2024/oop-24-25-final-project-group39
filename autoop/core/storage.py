@@ -5,7 +5,8 @@ from glob import glob
 
 
 class NotFoundError(Exception):
-    """Exception raised when a specified path is not found
+    """
+    Exception raised when a specified path is not found
     """
     def __init__(self, path: str) -> None:
         """
@@ -68,7 +69,8 @@ class Storage(ABC):
 
 
 class LocalStorage(Storage):
-    """A concrete implementation of the Storage class that saves, loads,
+    """
+    A concrete implementation of the Storage class that saves, loads,
     deletes, and lists files locally
     """
     def __init__(self, base_path: str = "./assets") -> None:

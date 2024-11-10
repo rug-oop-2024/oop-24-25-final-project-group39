@@ -5,14 +5,14 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>autoop.core.storage &mdash; OOP final project group 39 v0.1 documentation</title>
+  <title>autoop.core.storage &mdash; OOP final project group 39 v1.0 documentation</title>
       <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=80d5e7a1" />
       <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=e59714d7" />
 
   
       <script src="../../../_static/jquery.js?v=5d32c60e"></script>
       <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-      <script src="../../../_static/documentation_options.js?v=34cd777e"></script>
+      <script src="../../../_static/documentation_options.js?v=e160b93e"></script>
       <script src="../../../_static/doctools.js?v=9bcbadda"></script>
       <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../../_static/js/theme.js"></script>
@@ -41,7 +41,7 @@
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../../../modules.html">autoop</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../modules.html">Automated operation</a></li>
 </ul>
 
         </div>
@@ -78,7 +78,8 @@
 <div class="viewcode-block" id="NotFoundError">
 <a class="viewcode-back" href="../../../autoop.core.html#autoop.core.storage.NotFoundError">[docs]</a>
 <span class="k">class</span> <span class="nc">NotFoundError</span><span class="p">(</span><span class="ne">Exception</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Exception raised when a specified path is not found</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Exception raised when a specified path is not found</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">path</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
@@ -159,7 +160,8 @@
 <div class="viewcode-block" id="LocalStorage">
 <a class="viewcode-back" href="../../../autoop.core.html#autoop.core.storage.LocalStorage">[docs]</a>
 <span class="k">class</span> <span class="nc">LocalStorage</span><span class="p">(</span><span class="n">Storage</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;A concrete implementation of the Storage class that saves, loads,</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    A concrete implementation of the Storage class that saves, loads,</span>
 <span class="sd">    deletes, and lists files locally</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">base_path</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;./assets&quot;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>

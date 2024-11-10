@@ -6,14 +6,14 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Regression package &mdash; OOP final project group 39 v0.1 documentation</title>
+  <title>Regression package &mdash; OOP final project group 39 v1.0 documentation</title>
       <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=80d5e7a1" />
       <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
 
   
       <script src="_static/jquery.js?v=5d32c60e"></script>
       <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-      <script src="_static/documentation_options.js?v=34cd777e"></script>
+      <script src="_static/documentation_options.js?v=e160b93e"></script>
       <script src="_static/doctools.js?v=9bcbadda"></script>
       <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="_static/js/theme.js"></script>
@@ -43,7 +43,7 @@
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
 <ul class="current">
-<li class="toctree-l1 current"><a class="reference internal" href="modules.html">autoop</a><ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="modules.html">Automated operation</a><ul class="current">
 <li class="toctree-l2 current"><a class="reference internal" href="autoop.html">autoop</a><ul class="current">
 <li class="toctree-l3"><a class="reference internal" href="autoop.functional.html">Functional package</a></li>
 <li class="toctree-l3 current"><a class="reference internal" href="autoop.core.html">The core of autoop</a><ul class="current">
@@ -74,7 +74,7 @@
 <li class="toctree-l3"><a class="reference internal" href="autoop.core.ml.model.classification.html">Classification package</a></li>
 <li class="toctree-l3 current"><a class="current reference internal" href="#">Regression package</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="#regression-modules">Regression modules</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#module-autoop.core.ml.model.regression.lasso">Lasso module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#module-autoop.core.ml.model.regression.lassocv">LassoCV module</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#module-autoop.core.ml.model.regression.multi_linear_regression">Multi_linear_regression module</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#module-autoop.core.ml.model.regression.ridge">Ridge module</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#module-autoop.core.ml.model.regression">Module contents</a></li>
@@ -100,7 +100,7 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
-          <li class="breadcrumb-item"><a href="modules.html">autoop</a></li>
+          <li class="breadcrumb-item"><a href="modules.html">Automated operation</a></li>
           <li class="breadcrumb-item"><a href="autoop.html">autoop</a></li>
           <li class="breadcrumb-item"><a href="autoop.core.html">The core of autoop</a></li>
           <li class="breadcrumb-item"><a href="autoop.core.ml.html">Autoop Machine Learning package</a></li>
@@ -120,38 +120,57 @@
 <section id="regression-modules">
 <h2>Regression modules<a class="headerlink" href="#regression-modules" title="Link to this heading"></a></h2>
 </section>
-<section id="module-autoop.core.ml.model.regression.lasso">
-<span id="lasso-module"></span><h2>Lasso module<a class="headerlink" href="#module-autoop.core.ml.model.regression.lasso" title="Link to this heading"></a></h2>
+<section id="module-autoop.core.ml.model.regression.lassocv">
+<span id="lassocv-module"></span><h2>LassoCV module<a class="headerlink" href="#module-autoop.core.ml.model.regression.lassocv" title="Link to this heading"></a></h2>
 <dl class="py class">
-<dt class="sig sig-object py" id="autoop.core.ml.model.regression.lasso.Lasso">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">autoop.core.ml.model.regression.lasso.</span></span><span class="sig-name descname"><span class="pre">Lasso</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">alpha</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1.0</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/autoop/core/ml/model/regression/lasso.html#Lasso"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#autoop.core.ml.model.regression.lasso.Lasso" title="Link to this definition"></a></dt>
+<dt class="sig sig-object py" id="autoop.core.ml.model.regression.lassocv.LassoCV">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">autoop.core.ml.model.regression.lassocv.</span></span><span class="sig-name descname"><span class="pre">LassoCV</span></span><a class="reference internal" href="_modules/autoop/core/ml/model/regression/lassocv.html#LassoCV"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#autoop.core.ml.model.regression.lassocv.LassoCV" title="Link to this definition"></a></dt>
 <dd><p>Bases: <a class="reference internal" href="autoop.core.ml.model.html#autoop.core.ml.model.model.Model" title="autoop.core.ml.model.model.Model"><code class="xref py py-class docutils literal notranslate"><span class="pre">Model</span></code></a></p>
-<p>Lasso regression model for regression tasks using scikit-learn</p>
+<p>LassoCV model for regression tasks using scikit-learn</p>
 <dl class="py method">
-<dt class="sig sig-object py" id="autoop.core.ml.model.regression.lasso.Lasso.fit">
-<span class="sig-name descname"><span class="pre">fit</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Y</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/autoop/core/ml/model/regression/lasso.html#Lasso.fit"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#autoop.core.ml.model.regression.lasso.Lasso.fit" title="Link to this definition"></a></dt>
-<dd><p>Fits the lasso model to the provided values
-:param X : Numpy array of data
-:param Y : Numpy array of the target values
-corresponding to each observation</p>
+<dt class="sig sig-object py" id="autoop.core.ml.model.regression.lassocv.LassoCV.fit">
+<span class="sig-name descname"><span class="pre">fit</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Y</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/autoop/core/ml/model/regression/lassocv.html#LassoCV.fit"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#autoop.core.ml.model.regression.lassocv.LassoCV.fit" title="Link to this definition"></a></dt>
+<dd><p>Fits the model to the training data
+:param observations: Training data where
+:type observations: np.ndarray
+:param each row is a data point:
+:param ground_truth: Target labels for each data
+:type ground_truth: np.ndarray
+:param point in the training set:</p>
 <dl class="field-list simple">
 <dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code></span></p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>None</p>
 </dd>
 </dl>
 </dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="autoop.core.ml.model.regression.lasso.Lasso.predict">
-<span class="sig-name descname"><span class="pre">predict</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/autoop/core/ml/model/regression/lasso.html#Lasso.predict"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#autoop.core.ml.model.regression.lasso.Lasso.predict" title="Link to this definition"></a></dt>
-<dd><p>Takes the observations and calculates predictions using
-the parameters
-:param X : Numpy array of data
-:return : Numpy array of predicted target values correspond to
-the input observations</p>
+<dt class="sig sig-object py" id="autoop.core.ml.model.regression.lassocv.LassoCV.get_best_alpha">
+<span class="sig-name descname"><span class="pre">get_best_alpha</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/autoop/core/ml/model/regression/lassocv.html#LassoCV.get_best_alpha"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#autoop.core.ml.model.regression.lassocv.LassoCV.get_best_alpha" title="Link to this definition"></a></dt>
+<dd><p>Returns the best alpha selected by cross-validation
+:return : Best alpha value</p>
 <dl class="field-list simple">
 <dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">ndarray</span></code></span></p>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></span></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="autoop.core.ml.model.regression.lassocv.LassoCV.predict">
+<span class="sig-name descname"><span class="pre">predict</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/autoop/core/ml/model/regression/lassocv.html#LassoCV.predict"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#autoop.core.ml.model.regression.lassocv.LassoCV.predict" title="Link to this definition"></a></dt>
+<dd><p>Predicts labels for each observation in the input
+:param observations: Input data features for prediction
+:type observations: np.ndarray</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Predicted labels for each input observation</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>np.ndarray</p>
 </dd>
 </dl>
 </dd></dl>
@@ -170,12 +189,19 @@ regression tasks using scikit-learn</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="autoop.core.ml.model.regression.multi_linear_regression.MultipleLinearRegression.fit">
 <span class="sig-name descname"><span class="pre">fit</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/autoop/core/ml/model/regression/multi_linear_regression.html#MultipleLinearRegression.fit"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#autoop.core.ml.model.regression.multi_linear_regression.MultipleLinearRegression.fit" title="Link to this definition"></a></dt>
-<dd><p>Fits the multiple linear regession model to the provided values
-:param x : Numpy array of data minus the variable to predict
-:param y : Numpy array of the variable to predict</p>
+<dd><p>Fits the model to the training data
+:param observations: Training data where
+:type observations: np.ndarray
+:param each row is a data point:
+:param ground_truth: Target labels for each data
+:type ground_truth: np.ndarray
+:param point in the training set:</p>
 <dl class="field-list simple">
 <dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code></span></p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>None</p>
 </dd>
 </dl>
 </dd></dl>
@@ -183,13 +209,15 @@ regression tasks using scikit-learn</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="autoop.core.ml.model.regression.multi_linear_regression.MultipleLinearRegression.predict">
 <span class="sig-name descname"><span class="pre">predict</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/autoop/core/ml/model/regression/multi_linear_regression.html#MultipleLinearRegression.predict"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#autoop.core.ml.model.regression.multi_linear_regression.MultipleLinearRegression.predict" title="Link to this definition"></a></dt>
-<dd><p>Takes the observations and calculates predictions using
-the parameters
-:param x : Numpy array of the other variables
-:return : Numpy array of the predicted values</p>
+<dd><p>Predicts labels for each observation in the input
+:param observations: Input data features for prediction
+:type observations: np.ndarray</p>
 <dl class="field-list simple">
-<dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">ndarray</span></code></span></p>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Predicted labels for each input observation</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>np.ndarray</p>
 </dd>
 </dl>
 </dd></dl>
@@ -207,12 +235,19 @@ the parameters
 <dl class="py method">
 <dt class="sig sig-object py" id="autoop.core.ml.model.regression.ridge.RidgeModel.fit">
 <span class="sig-name descname"><span class="pre">fit</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/autoop/core/ml/model/regression/ridge.html#RidgeModel.fit"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#autoop.core.ml.model.regression.ridge.RidgeModel.fit" title="Link to this definition"></a></dt>
-<dd><p>Fits the ridge model to the provided values
-:param x : Numpy array of data minus the variable to predict
-:param y : Numpy array of the variable to predict</p>
+<dd><p>Fits the model to the training data
+:param observations: Training data where
+:type observations: np.ndarray
+:param each row is a data point:
+:param ground_truth: Target labels for each data
+:type ground_truth: np.ndarray
+:param point in the training set:</p>
 <dl class="field-list simple">
 <dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code></span></p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>None</p>
 </dd>
 </dl>
 </dd></dl>
@@ -220,13 +255,15 @@ the parameters
 <dl class="py method">
 <dt class="sig sig-object py" id="autoop.core.ml.model.regression.ridge.RidgeModel.predict">
 <span class="sig-name descname"><span class="pre">predict</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/autoop/core/ml/model/regression/ridge.html#RidgeModel.predict"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#autoop.core.ml.model.regression.ridge.RidgeModel.predict" title="Link to this definition"></a></dt>
-<dd><p>Takes the observations and calculates predictions using
-the parameters
-:param x : Numpy array of the other variables
-:return : Numpy array of the predicted values</p>
+<dd><p>Predicts labels for each observation in the input
+:param observations: Input data features for prediction
+:type observations: np.ndarray</p>
 <dl class="field-list simple">
-<dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">ndarray</span></code></span></p>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Predicted labels for each input observation</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>np.ndarray</p>
 </dd>
 </dl>
 </dd></dl>
