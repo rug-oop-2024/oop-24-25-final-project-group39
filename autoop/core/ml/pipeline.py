@@ -192,6 +192,7 @@ Pipeline(
         Returns:
             dict: A dictionary containing
             the evaluation metrics and predictions
+            for testing and training sets
         """
         self._preprocess_features()
         self._split_data()
@@ -201,8 +202,12 @@ Pipeline(
         train_x = self._compact_vectors(self._train_X)
         test_x = self._compact_vectors(self._test_X)
         train_predictions = self._model.predict(train_x)
-        train_metrics_results = [(metric, metric.evaluate(
-            train_predictions, self._train_y)) for metric in self._metrics]
+        train_metrics_results = []
+        for metric in self._metrics:
+            train_metrics_results.append((metric,
+                                         metric.evaluate(train_predictions,
+                                                         self._train_y)))
+
         test_predictions = self._model.predict(test_x)
         test_metrics_results = []
         for metric in self._metrics:
