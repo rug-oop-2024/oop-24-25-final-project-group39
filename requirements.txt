@@ -7,3 +7,4 @@ sphinx
 sphinx_rtd_theme
 sphinx_autodoc_typehints
 autodoc
+markdown-it-py

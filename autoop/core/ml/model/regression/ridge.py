@@ -17,17 +17,23 @@ class RidgeModel(Model):
 
     def fit(self, X: np.ndarray, y: np.ndarray) -> None:
         """
-        Fits the ridge model to the provided values
-        :param x : Numpy array of data minus the variable to predict
-        :param y : Numpy array of the variable to predict
+        Fits the model to the training data
+        Args:
+            observations (np.ndarray): Training data where
+            each row is a data point
+            ground_truth (np.ndarray): Target labels for each data
+            point in the training set
+        Returns:
+            None
         """
         self.model.fit(X, y)
 
     def predict(self, X: np.ndarray) -> np.ndarray:
         """
-        Takes the observations and calculates predictions using
-        the parameters
-        :param x : Numpy array of the other variables
-        :return : Numpy array of the predicted values
+        Predicts labels for each observation in the input
+        Args:
+            observations (np.ndarray): Input data features for prediction
+        Returns:
+            np.ndarray: Predicted labels for each input observation
         """
         return self.model.predict(X)

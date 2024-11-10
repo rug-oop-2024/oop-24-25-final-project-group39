@@ -1,22 +1,19 @@
 import numpy as np
 
 from autoop.core.ml.model import Model
-from sklearn.linear_model import LinearRegression
+from sklearn.linear_model import LassoCV as SklearnLassoCV
 
 
-class MultipleLinearRegression(Model):
-    """Multiple linear regression model for
-    regression tasks using scikit-learn"""
+class LassoCV(Model):
     def __init__(self) -> None:
         """
-        Initializes the multiple linear regression model
-        Returns:
-            None
+        Initializes the lasso model with cross-validation for alpha selection
+        :param alphas : Array of alpha values to be tested in cross-validation
         """
         super().__init__(type="regression", parameters={})
-        self.model = LinearRegression()
+        self.model = SklearnLassoCV()
 
-    def fit(self, x: np.ndarray, y: np.ndarray) -> None:
+    def fit(self, X: np.ndarray, Y: np.ndarray) -> None:
         """
         Fits the model to the training data
         Args:
@@ -27,11 +24,9 @@ class MultipleLinearRegression(Model):
         Returns:
             None
         """
-        self.model.fit(x, y)
-        self.parameters = {"coef_": self.model.coef_,
-                           "intercept_": self.model.intercept_}
+        self.model.fit(X, Y)
 
-    def predict(self, x: np.ndarray) -> np.ndarray:
+    def predict(self, X: np.ndarray) -> np.ndarray:
         """
         Predicts labels for each observation in the input
         Args:
@@ -39,4 +34,11 @@ class MultipleLinearRegression(Model):
         Returns:
             np.ndarray: Predicted labels for each input observation
         """
-        return self.model.predict(x)
+        return self.model.predict(X)
+
+    def get_best_alpha(self) -> float:
+        """
+        Returns the best alpha selected by cross-validation
+        :return : Best alpha value
+        """
+        return self.model.alpha_

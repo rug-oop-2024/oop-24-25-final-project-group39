@@ -3,6 +3,7 @@ import streamlit as st
 import pandas as pd
 from typing import List
 import time
+import numpy as np
 
 from autoop.core.ml.dataset import Dataset
 from autoop.core.ml.model import (REGRESSION_MODELS,
@@ -106,7 +107,6 @@ def choose_model(input_features: List[str], target_feature: str) -> str:
         else:
             chosen_model = st.selectbox("Choose a regression model",
                                         REGRESSION_MODELS)
-            st.write(chosen_model)
         return chosen_model
 
 
@@ -153,7 +153,6 @@ def metric_to_classes(chosen_metrics: List[str]) -> List["Metric"]:
     if chosen_metrics != []:
         for i in range(len(chosen_metrics)):
             metric_models.append(get_metric(chosen_metrics[i]))
-            st.write(chosen_metrics[i])
     return metric_models
 
 
@@ -208,9 +207,13 @@ def show_results(pipeline: Pipeline, chosen_metrics: List[str]) -> None:
         for i in range(len(chosen_metrics)):
             st.write(f"{chosen_metrics[i]}: \
                      {pipeline._metrics_results[i][1]:.2f}")
-        with st.expander("", expanded=True):
-            st.write("### Predictions:")
-            st.write(results['predictions'])
+
+        predictions = np.ravel(results["test_predictions"])
+        actual_values = np.ravel(pipeline._test_y)
+
+        st.subheader("Predictions")
+        st.dataframe(pd.DataFrame({"Predictions": predictions,
+                                   "Actual": actual_values}))
 
 
 def save_pipeline(automl: AutoMLSystem, pipeline: Pipeline) -> None:

@@ -3,7 +3,7 @@ This module provides a function to retrieve
 various classification and regression models.
 """
 from autoop.core.ml.model.model import Model
-from autoop.core.ml.model.regression.lasso import Lasso
+from autoop.core.ml.model.regression.lassocv import LassoCV
 from autoop.core.ml.model.regression.multi_linear_regression import (
     MultipleLinearRegression)
 from autoop.core.ml.model.regression.ridge import RidgeModel
@@ -20,7 +20,7 @@ CLASSIFICATION_MODELS = ["KNearestNeighbors", "DecisionTree",
                          "RandomForest"]
 
 REGRESSION_MODELS = ["MultipleLinearRegression",
-                     "Lasso", "RidgeModel"]
+                     "LassoCV", "RidgeModel"]
 
 
 def get_model(model_name: str) -> Model:
@@ -40,8 +40,8 @@ def get_model(model_name: str) -> Model:
         match model_name:
             case "MultipleLinearRegression":
                 return MultipleLinearRegression()
-            case "Lasso":
-                return Lasso()
+            case "LassoCV":
+                return LassoCV()
             case "RidgeModel":
                 return RidgeModel()
     elif model_name in CLASSIFICATION_MODELS:

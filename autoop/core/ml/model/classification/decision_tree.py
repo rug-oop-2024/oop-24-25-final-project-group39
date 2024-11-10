@@ -17,9 +17,14 @@ class DecisionTree(Model):
 
     def fit(self, observations: np.ndarray, ground_truth: np.ndarray) -> None:
         """
-        Fits the decision tree to the provided training data.
-        :param observations: Numpy array where each row is a data point.
-        :param ground_truth: Numpy array with the corresponding labels.
+        Fits the model to the training data
+        Args:
+            observations (np.ndarray): Training data where
+            each row is a data point
+            ground_truth (np.ndarray): Target labels for each data
+            point in the training set
+        Returns:
+            None
         """
         self.model.fit(observations, ground_truth)
         self.parameters = {

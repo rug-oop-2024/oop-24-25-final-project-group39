@@ -7,12 +7,12 @@
 # Limitations: Memory intensive and can be slow on large data sets
 # Alternatives: Decision Trees
 
-# DSC-0006: Use of Lasso model
+# DSC-0006: Use of LassoCV model
 # Date: 3-11-2024
-# Decision: Implementation of Lasso for regularized linear regression
+# Decision: Implementation of LassoCV for regularized linear regression
 # Status: Accepted
-# Motivation: Lasso selects important features and adresses overfitting in high-dimensional data
-# Reason: Lasso applies l1 regularization which helps with selecting significant features (shrinking some other feautre coefficients to zero), and reducing complexity
+# Motivation: LassoCV selects important features and adresses overfitting in high-dimensional data
+# Reason: LassoCV applies l1 regularization which helps with selecting significant features (shrinking some other feautre coefficients to zero), and reducing complexity
 # Limitations: Can be too agressive with eliminating feautures
 # Alternatives: Ridge Regression
 

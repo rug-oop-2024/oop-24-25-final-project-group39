@@ -14,7 +14,6 @@ st.header("Pipelines")
 if pipeline_list == []:
     st.write("No saved pipelines found.")
 else:
-    st.write(pipeline_list)
     chosen_pipeline = None
     selected_pipeline = st.selectbox("Choose a pipeline",
                                      [f"{pipeline.name} // {pipeline.version}"
