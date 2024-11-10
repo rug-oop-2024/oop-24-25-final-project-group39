@@ -116,7 +116,7 @@ def choose_train_split() -> float:
     Returns:
         float: The percentage of data to be used for training
     """
-    train_split = st.slider("Training data percentage", 50, 99, 75)
+    train_split = st.slider("Training data percentage", 50, 99, 80)
     st.write("##### Updated Data Splits:")
     st.write(f"Train Split: {train_split}%")
     st.write(f"Test Split: {100 - train_split}%")

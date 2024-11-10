@@ -12,7 +12,7 @@ from autoop.core.ml.artifact import Artifact
 class Model(ABC):
     """Abstract base class for machine learning models"""
     def __init__(self, type: Literal["regression", "classification"],
-                 parameters: dict) -> None:
+                 parameters: dict = {}) -> None:
         """
         Initializes the model
         Args:

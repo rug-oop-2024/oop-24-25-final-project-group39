@@ -5,12 +5,13 @@ from sklearn.linear_model import LassoCV as SklearnLassoCV
 
 
 class LassoCV(Model):
+    """LassoCV model for regression tasks using scikit-learn"""
     def __init__(self) -> None:
         """
         Initializes the lasso model with cross-validation for alpha selection
         :param alphas : Array of alpha values to be tested in cross-validation
         """
-        super().__init__(type="regression", parameters={})
+        super().__init__(type="regression")
         self.model = SklearnLassoCV()
 
     def fit(self, X: np.ndarray, Y: np.ndarray) -> None:

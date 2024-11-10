@@ -12,7 +12,7 @@ class DecisionTree(Model):
         Returns:
             None
         """
-        super().__init__(type="classification", parameters={})
+        super().__init__(type="classification")
         self.model = DecisionTreeClassifier()
 
     def fit(self, observations: np.ndarray, ground_truth: np.ndarray) -> None:
