@@ -1,4 +1,4 @@
-autoop.functional package
+Functional package
 =========================
 
 Submodules

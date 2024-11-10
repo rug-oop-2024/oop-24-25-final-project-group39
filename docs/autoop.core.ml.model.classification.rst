@@ -2,7 +2,7 @@ Classification package
 ===========================================
 
 Classification modules
-----------
+-------------------------
 
 Decision tree module
 ---------------------------------------------------------
@@ -30,7 +30,7 @@ Random forest module
    :show-inheritance:
 
 Module contents
----------------
+--------------------
 
 .. automodule:: autoop.core.ml.model.classification
    :members:

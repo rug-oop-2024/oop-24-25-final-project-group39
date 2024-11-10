@@ -1,4 +1,4 @@
-autoop.core.ml package
+Autoop Machine Learning package
 ======================
 
 Subpackages

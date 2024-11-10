@@ -1,4 +1,4 @@
-autoop.core package
+The core of autoop
 ===================
 
 Subpackages

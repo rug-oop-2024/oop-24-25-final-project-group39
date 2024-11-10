@@ -40,8 +40,6 @@ def check_inputs() -> bool:
     if dataset is None or input_features == [] or target_feature is None \
             or model is None or chosen_metrics == []:
         st.write("First finish the pipeline inputs")
-        st.write(dataset)
-        st.write(model)
         return False
     else:
         return True
@@ -57,8 +55,11 @@ chosen_model = None
 st.header("Step 1. Choose Dataset")
 dataset_artifact = mh.choose_dataset(datasets)
 dataset = Dataset(name=dataset_artifact.name,
-                  data=dataset_artifact.data,
-                  asset_path=dataset_artifact.asset_path)
+                  version=dataset_artifact.version,
+                  asset_path=dataset_artifact.asset_path,
+                  tags=dataset_artifact.tags,
+                  metadata=dataset_artifact.metadata,
+                  data=dataset_artifact.data)
 
 st.header("Step 2. Select Features")
 if dataset is not None:

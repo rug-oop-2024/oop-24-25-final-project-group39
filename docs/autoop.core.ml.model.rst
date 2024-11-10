@@ -2,7 +2,7 @@ model package
 ============================
 
 Subpackages
------------
+---------------
 
 .. toctree::
    :maxdepth: 4
@@ -21,7 +21,7 @@ Machine learning basemodel
    :show-inheritance:
 
 Module contents
----------------
+------------------
 
 .. automodule:: autoop.core.ml.model
    :members:
