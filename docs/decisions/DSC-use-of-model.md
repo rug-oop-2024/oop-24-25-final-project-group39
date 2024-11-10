@@ -1,4 +1,4 @@
-# DSC-0007: Use of KNearestNeighbors (KNN) model
+# DSC-0005: Use of KNearestNeighbors (KNN) model
 # Date: 3-11-2024
 # Decision: Implementation of KNN model for classification
 # Status: Accepted
@@ -7,7 +7,7 @@
 # Limitations: Memory intensive and can be slow on large data sets
 # Alternatives: Decision Trees
 
-# DSC-0008: Use of Lasso model
+# DSC-0006: Use of Lasso model
 # Date: 3-11-2024
 # Decision: Implementation of Lasso for regularized linear regression
 # Status: Accepted
@@ -52,7 +52,7 @@
 # Limitations: The model struggles with non-linear data
 # Alternatives: Decision Trees or KNearestNeighbors
 
-# DSC-0013: Use of Linear SVC model
+# DSC-0016: Use of Linear SVC model
 # Date: 9-11-2024
 # Decision: Implementation of Linear SVC model for classification
 # Status: Rejected
@@ -61,7 +61,7 @@
 # Limitations: Struggles with non-linear data, and may require significant tuning of hyperparameters to avoid underfitting or overfitting
 # Alternatives: Random Forest model
 
-# DSC-0014: Use of Random Forest model
+# DSC-0017: Use of Random Forest model
 # Date: 9-11-2024
 # Decision: Implementation of the Random Forest model for classification
 # Status: Accepted

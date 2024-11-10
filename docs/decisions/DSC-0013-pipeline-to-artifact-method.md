@@ -1,4 +1,4 @@
-# DSC-0017: Use to-artifact method
+# DSC-0013: Use to-artifact method
 # Date: 8-11-2024
 # Decision: Extra pipeline method 'to_artifact'
 # Status: Accepted

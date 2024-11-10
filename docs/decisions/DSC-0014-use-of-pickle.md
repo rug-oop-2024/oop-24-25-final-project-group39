@@ -1,4 +1,4 @@
-# DSC-0016: Usage pickle
+# DSC-0014: Usage pickle
 # Date: 8-11-2024
 # Decision: Usage of pickle in pipeline saving and loading the pipeline
 # Status: Accepted
