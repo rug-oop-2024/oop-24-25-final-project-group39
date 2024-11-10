@@ -5,7 +5,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>autoop.core.ml.model.classification.decision_tree &mdash; OOP final project group 39 v1.0 documentation</title>
+  <title>autoop.core.ml.model.regression.lassocv &mdash; OOP final project group 39 v1.0 documentation</title>
       <link rel="stylesheet" type="text/css" href="../../../../../../_static/pygments.css?v=80d5e7a1" />
       <link rel="stylesheet" type="text/css" href="../../../../../../_static/css/theme.css?v=e59714d7" />
 
@@ -60,7 +60,7 @@
       <li><a href="../../../../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
           <li class="breadcrumb-item"><a href="../../../../../index.html">Module code</a></li>
           <li class="breadcrumb-item"><a href="../../model.html">autoop.core.ml.model</a></li>
-      <li class="breadcrumb-item active">autoop.core.ml.model.classification.decision_tree</li>
+      <li class="breadcrumb-item active">autoop.core.ml.model.regression.lassocv</li>
       <li class="wy-breadcrumbs-aside">
       </li>
   </ul>
@@ -69,29 +69,28 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <h1>Source code for autoop.core.ml.model.classification.decision_tree</h1><div class="highlight"><pre>
+  <h1>Source code for autoop.core.ml.model.regression.lassocv</h1><div class="highlight"><pre>
 <span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 
 <span class="kn">from</span> <span class="nn">autoop.core.ml.model</span> <span class="kn">import</span> <span class="n">Model</span>
-<span class="kn">from</span> <span class="nn">sklearn.tree</span> <span class="kn">import</span> <span class="n">DecisionTreeClassifier</span>
+<span class="kn">from</span> <span class="nn">sklearn.linear_model</span> <span class="kn">import</span> <span class="n">LassoCV</span> <span class="k">as</span> <span class="n">SklearnLassoCV</span>
 
 
-<div class="viewcode-block" id="DecisionTree">
-<a class="viewcode-back" href="../../../../../../autoop.core.ml.model.classification.html#autoop.core.ml.model.classification.decision_tree.DecisionTree">[docs]</a>
-<span class="k">class</span> <span class="nc">DecisionTree</span><span class="p">(</span><span class="n">Model</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Decision tree model for classification using scikit-learn&quot;&quot;&quot;</span>
+<div class="viewcode-block" id="LassoCV">
+<a class="viewcode-back" href="../../../../../../autoop.core.ml.model.regression.html#autoop.core.ml.model.regression.lassocv.LassoCV">[docs]</a>
+<span class="k">class</span> <span class="nc">LassoCV</span><span class="p">(</span><span class="n">Model</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;LassoCV model for regression tasks using scikit-learn&quot;&quot;&quot;</span>
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Initializes the decision tree model</span>
-<span class="sd">        Returns:</span>
-<span class="sd">            None</span>
+<span class="sd">        Initializes the lasso model with cross-validation for alpha selection</span>
+<span class="sd">        :param alphas : Array of alpha values to be tested in cross-validation</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="nb">type</span><span class="o">=</span><span class="s2">&quot;classification&quot;</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">model</span> <span class="o">=</span> <span class="n">DecisionTreeClassifier</span><span class="p">()</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="nb">type</span><span class="o">=</span><span class="s2">&quot;regression&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">model</span> <span class="o">=</span> <span class="n">SklearnLassoCV</span><span class="p">()</span>
 
-<div class="viewcode-block" id="DecisionTree.fit">
-<a class="viewcode-back" href="../../../../../../autoop.core.ml.model.classification.html#autoop.core.ml.model.classification.decision_tree.DecisionTree.fit">[docs]</a>
-    <span class="k">def</span> <span class="nf">fit</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">observations</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">ground_truth</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<div class="viewcode-block" id="LassoCV.fit">
+<a class="viewcode-back" href="../../../../../../autoop.core.ml.model.regression.html#autoop.core.ml.model.regression.lassocv.LassoCV.fit">[docs]</a>
+    <span class="k">def</span> <span class="nf">fit</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">Y</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Fits the model to the training data</span>
 <span class="sd">        Args:</span>
@@ -102,24 +101,30 @@
 <span class="sd">        Returns:</span>
 <span class="sd">            None</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">observations</span><span class="p">,</span> <span class="n">ground_truth</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">parameters</span> <span class="o">=</span> <span class="p">{</span>
-            <span class="s2">&quot;feature_importances&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="o">.</span><span class="n">feature_importances_</span><span class="o">.</span><span class="n">tolist</span><span class="p">(),</span>
-            <span class="s2">&quot;max_depth&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="o">.</span><span class="n">get_depth</span><span class="p">(),</span>
-            <span class="s2">&quot;n_leaves&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="o">.</span><span class="n">get_n_leaves</span><span class="p">()</span>
-        <span class="p">}</span></div>
+        <span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">Y</span><span class="p">)</span></div>
 
 
-<div class="viewcode-block" id="DecisionTree.predict">
-<a class="viewcode-back" href="../../../../../../autoop.core.ml.model.classification.html#autoop.core.ml.model.classification.decision_tree.DecisionTree.predict">[docs]</a>
-    <span class="k">def</span> <span class="nf">predict</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">observations</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>
+<div class="viewcode-block" id="LassoCV.predict">
+<a class="viewcode-back" href="../../../../../../autoop.core.ml.model.regression.html#autoop.core.ml.model.regression.lassocv.LassoCV.predict">[docs]</a>
+    <span class="k">def</span> <span class="nf">predict</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Predicts the label for each example in the input.</span>
-<span class="sd">        :param observations: Numpy array where</span>
-<span class="sd">        each row is a data point to predict.</span>
-<span class="sd">        :return: Numpy array of predicted labels for each input example.</span>
+<span class="sd">        Predicts labels for each observation in the input</span>
+<span class="sd">        Args:</span>
+<span class="sd">            observations (np.ndarray): Input data features for prediction</span>
+<span class="sd">        Returns:</span>
+<span class="sd">            np.ndarray: Predicted labels for each input observation</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">observations</span><span class="p">)</span></div>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="LassoCV.get_best_alpha">
+<a class="viewcode-back" href="../../../../../../autoop.core.ml.model.regression.html#autoop.core.ml.model.regression.lassocv.LassoCV.get_best_alpha">[docs]</a>
+    <span class="k">def</span> <span class="nf">get_best_alpha</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Returns the best alpha selected by cross-validation</span>
+<span class="sd">        :return : Best alpha value</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="o">.</span><span class="n">alpha_</span></div>
 </div>
 
 </pre></div>

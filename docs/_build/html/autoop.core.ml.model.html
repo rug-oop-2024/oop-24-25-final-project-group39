@@ -6,14 +6,14 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>model package &mdash; OOP final project group 39 v0.1 documentation</title>
+  <title>model package &mdash; OOP final project group 39 v1.0 documentation</title>
       <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=80d5e7a1" />
       <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
 
   
       <script src="_static/jquery.js?v=5d32c60e"></script>
       <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-      <script src="_static/documentation_options.js?v=34cd777e"></script>
+      <script src="_static/documentation_options.js?v=e160b93e"></script>
       <script src="_static/doctools.js?v=9bcbadda"></script>
       <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="_static/js/theme.js"></script>
@@ -44,7 +44,7 @@
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
 <ul class="current">
-<li class="toctree-l1 current"><a class="reference internal" href="modules.html">autoop</a><ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="modules.html">Automated operation</a><ul class="current">
 <li class="toctree-l2 current"><a class="reference internal" href="autoop.html">autoop</a><ul class="current">
 <li class="toctree-l3"><a class="reference internal" href="autoop.functional.html">Functional package</a></li>
 <li class="toctree-l3 current"><a class="reference internal" href="autoop.core.html">The core of autoop</a><ul class="current">
@@ -94,7 +94,7 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
-          <li class="breadcrumb-item"><a href="modules.html">autoop</a></li>
+          <li class="breadcrumb-item"><a href="modules.html">Automated operation</a></li>
           <li class="breadcrumb-item"><a href="autoop.html">autoop</a></li>
           <li class="breadcrumb-item"><a href="autoop.core.html">The core of autoop</a></li>
           <li class="breadcrumb-item"><a href="autoop.core.ml.html">Autoop Machine Learning package</a></li>
@@ -145,10 +145,11 @@
 </li>
 <li class="toctree-l1"><a class="reference internal" href="autoop.core.ml.model.regression.html">Regression package</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="autoop.core.ml.model.regression.html#regression-modules">Regression modules</a></li>
-<li class="toctree-l2"><a class="reference internal" href="autoop.core.ml.model.regression.html#module-autoop.core.ml.model.regression.lasso">Lasso module</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="autoop.core.ml.model.regression.html#autoop.core.ml.model.regression.lasso.Lasso"><code class="docutils literal notranslate"><span class="pre">Lasso</span></code></a><ul>
-<li class="toctree-l4"><a class="reference internal" href="autoop.core.ml.model.regression.html#autoop.core.ml.model.regression.lasso.Lasso.fit"><code class="docutils literal notranslate"><span class="pre">Lasso.fit()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="autoop.core.ml.model.regression.html#autoop.core.ml.model.regression.lasso.Lasso.predict"><code class="docutils literal notranslate"><span class="pre">Lasso.predict()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="autoop.core.ml.model.regression.html#module-autoop.core.ml.model.regression.lassocv">LassoCV module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="autoop.core.ml.model.regression.html#autoop.core.ml.model.regression.lassocv.LassoCV"><code class="docutils literal notranslate"><span class="pre">LassoCV</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="autoop.core.ml.model.regression.html#autoop.core.ml.model.regression.lassocv.LassoCV.fit"><code class="docutils literal notranslate"><span class="pre">LassoCV.fit()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="autoop.core.ml.model.regression.html#autoop.core.ml.model.regression.lassocv.LassoCV.get_best_alpha"><code class="docutils literal notranslate"><span class="pre">LassoCV.get_best_alpha()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="autoop.core.ml.model.regression.html#autoop.core.ml.model.regression.lassocv.LassoCV.predict"><code class="docutils literal notranslate"><span class="pre">LassoCV.predict()</span></code></a></li>
 </ul>
 </li>
 </ul>
@@ -179,7 +180,7 @@
 <span id="machine-learning-basemodel"></span><h2>Machine learning basemodel<a class="headerlink" href="#module-autoop.core.ml.model.model" title="Link to this heading"></a></h2>
 <dl class="py class">
 <dt class="sig sig-object py" id="autoop.core.ml.model.model.Model">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">autoop.core.ml.model.model.</span></span><span class="sig-name descname"><span class="pre">Model</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">type</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">parameters</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/autoop/core/ml/model/model.html#Model"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#autoop.core.ml.model.model.Model" title="Link to this definition"></a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">autoop.core.ml.model.model.</span></span><span class="sig-name descname"><span class="pre">Model</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">type</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">parameters</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">{}</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/autoop/core/ml/model/model.html#Model"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#autoop.core.ml.model.model.Model" title="Link to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">ABC</span></code></p>
 <p>Abstract base class for machine learning models</p>
 <dl class="py method">

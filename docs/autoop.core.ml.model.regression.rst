@@ -4,10 +4,10 @@ Regression package
 Regression modules
 ---------------------
 
-Lasso module
+LassoCV module
 --------------------------------------------
 
-.. automodule:: autoop.core.ml.model.regression.lasso
+.. automodule:: autoop.core.ml.model.regression.lassocv
    :members:
    :undoc-members:
    :show-inheritance: autoop.core.ml.model.model

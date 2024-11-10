@@ -5,14 +5,14 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>autoop.core.ml.model.regression.multi_linear_regression &mdash; OOP final project group 39 v0.1 documentation</title>
+  <title>autoop.core.ml.model.regression.multi_linear_regression &mdash; OOP final project group 39 v1.0 documentation</title>
       <link rel="stylesheet" type="text/css" href="../../../../../../_static/pygments.css?v=80d5e7a1" />
       <link rel="stylesheet" type="text/css" href="../../../../../../_static/css/theme.css?v=e59714d7" />
 
   
       <script src="../../../../../../_static/jquery.js?v=5d32c60e"></script>
       <script src="../../../../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-      <script src="../../../../../../_static/documentation_options.js?v=34cd777e"></script>
+      <script src="../../../../../../_static/documentation_options.js?v=e160b93e"></script>
       <script src="../../../../../../_static/doctools.js?v=9bcbadda"></script>
       <script src="../../../../../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../../../../../_static/js/theme.js"></script>
@@ -41,7 +41,7 @@
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../../../../../../modules.html">autoop</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../../modules.html">Automated operation</a></li>
 </ul>
 
         </div>
@@ -94,9 +94,14 @@
 <a class="viewcode-back" href="../../../../../../autoop.core.ml.model.regression.html#autoop.core.ml.model.regression.multi_linear_regression.MultipleLinearRegression.fit">[docs]</a>
     <span class="k">def</span> <span class="nf">fit</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">y</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Fits the multiple linear regession model to the provided values</span>
-<span class="sd">        :param x : Numpy array of data minus the variable to predict</span>
-<span class="sd">        :param y : Numpy array of the variable to predict</span>
+<span class="sd">        Fits the model to the training data</span>
+<span class="sd">        Args:</span>
+<span class="sd">            observations (np.ndarray): Training data where</span>
+<span class="sd">            each row is a data point</span>
+<span class="sd">            ground_truth (np.ndarray): Target labels for each data</span>
+<span class="sd">            point in the training set</span>
+<span class="sd">        Returns:</span>
+<span class="sd">            None</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">parameters</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;coef_&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="o">.</span><span class="n">coef_</span><span class="p">,</span>
@@ -107,10 +112,11 @@
 <a class="viewcode-back" href="../../../../../../autoop.core.ml.model.regression.html#autoop.core.ml.model.regression.multi_linear_regression.MultipleLinearRegression.predict">[docs]</a>
     <span class="k">def</span> <span class="nf">predict</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Takes the observations and calculates predictions using</span>
-<span class="sd">        the parameters</span>
-<span class="sd">        :param x : Numpy array of the other variables</span>
-<span class="sd">        :return : Numpy array of the predicted values</span>
+<span class="sd">        Predicts labels for each observation in the input</span>
+<span class="sd">        Args:</span>
+<span class="sd">            observations (np.ndarray): Input data features for prediction</span>
+<span class="sd">        Returns:</span>
+<span class="sd">            np.ndarray: Predicted labels for each input observation</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">x</span><span class="p">)</span></div>
 </div>
